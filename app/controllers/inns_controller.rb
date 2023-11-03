@@ -3,14 +3,21 @@ class InnsController < ApplicationController
 
   def new
     @inn = Inn.new(address: Address.new)
+    @additional_information = AdditionalInformation.new(inn: @inn)
   end
 
   def create
     @inn = Inn.new(inn_params)
     @inn.address = Address.new(address_params)
+    @additional_information = AdditionalInformation.new(check_in: params[:additional_information][:check_in], 
+                                                        check_out: params[:additional_information][:check_out],
+                                                        inn: @inn)
+    @additional_information.valid?
 
-    if @inn.save      
-      redirect_to new_inn_path, notice: 'Pousada cadastrada com sucesso'
+    if @inn.valid? && @additional_information.valid?
+      @inn.save
+      @additional_information.save
+      redirect_to my_inn_path, notice: 'Pousada cadastrada com sucesso'
     else
       flash.now[:alert] = 'Pousada não cadastrada'
       render :new, status: 422

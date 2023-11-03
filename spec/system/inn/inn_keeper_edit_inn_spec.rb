@@ -63,8 +63,8 @@ describe 'Inn keeper edit inn' do
     expect(page).to have_content 'Informações adicionais:'
     expect(page).to have_content 'Sem Descrição'
     expect(page).to have_content 'Sem Políticas'
-    expect(page).to have_content 'Sem Horário de Check-in'
-    expect(page).to have_content 'Sem Horário de Check-out'
+    expect(page).to have_content 'Check-in:'
+    expect(page).to have_content 'Check-out:'
     expect(page).to have_content 'Aceita Pets: Não'
     click_on 'Editar Informações Adicionais'
 

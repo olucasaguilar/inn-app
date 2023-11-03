@@ -1,17 +1,3 @@
-<% if @inn.errors.any? || @inn.address.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @inn.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>    
-    <% @inn.address.errors.full_messages.each do |msg| %>
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_with model: @inn do |inn| %>
   <div>
     <%= inn.label :name %>
@@ -66,6 +52,20 @@
       </div>
     <% end %>
   </div>
+
+  <% if @inn.id.nil? %>
+    <%= fields_for @additional_information do |pm| %>
+      <div>
+        <%= pm.label :check_in %>
+        <%= pm.time_field :check_in %>
+      </div>
+
+      <div>
+        <%= pm.label :check_out %>
+        <%= pm.time_field :check_out %>
+      </div>
+    <% end %>
+  <% end %>
 
   <div>
     <%= inn.submit %>

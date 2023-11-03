@@ -10,6 +10,7 @@ class Inn < ApplicationRecord
   private
 
   def create_additional_information
-    AdditionalInformation.create!(inn: self)
+    AdditionalInformation.create!(inn: self, check_in: '12:00', 
+                                             check_out: '12:00') if self.additional_information.nil?
   end
 end

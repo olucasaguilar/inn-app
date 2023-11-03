@@ -18,22 +18,27 @@ describe 'Inn keeper register inn' do
       fill_in 'Cidade', with: 'São Paulo'
       fill_in 'CEP', with: '05412000'
 
+      fill_in 'Check-in', with: '14:03'
+      fill_in 'Check-out', with: '12:00'
+
       click_on 'Criar Pousada'
       # Assert
+      expect(current_path).to eq my_inn_path
       expect(page).to have_content 'Pousada cadastrada com sucesso'
 
-      last_inn = Inn.last        
-      expect(last_inn.name).to eq 'Pousada do Alemão'
-      expect(last_inn.social_name).to eq 'Pousada do Alemão LTDA'
-      expect(last_inn.cnpj).to eq '12345678901234'
-      expect(last_inn.phone).to eq '11999999999'
-      expect(last_inn.email).to eq 'pdalemao@gmail.com'
+      expect(page).to have_content 'Nome fantasia: Pousada do Alemão'
+      expect(page).to have_content 'Razão social: Pousada do Alemão LTDA'
+      expect(page).to have_content 'CNPJ: 12345678901234'
+      expect(page).to have_content 'Telefone: 11999999999'
+      expect(page).to have_content 'E-mail: pdalemao@gmail.com'
 
-      expect(last_inn.address.street).to eq 'Rua dos Bobos, 115'
-      expect(last_inn.address.neighborhood).to eq 'Vila Madalena'
-      expect(last_inn.address.state).to eq 'SP'
-      expect(last_inn.address.city).to eq 'São Paulo'
-      expect(last_inn.address.zip_code).to eq '05412000'
+      expect(page).to have_content 'Rua: Rua dos Bobos, 115'
+      expect(page).to have_content 'Bairro: Vila Madalena'
+      expect(page).to have_content 'Cidade: São Paulo - SP'
+      expect(page).to have_content 'CEP: 05412000'
+
+      expect(page).to have_content 'Check-in: 14:03'
+      expect(page).to have_content 'Check-out: 12:00'
     end
     
     it 'and must fill all required fields' do
@@ -52,6 +57,9 @@ describe 'Inn keeper register inn' do
       fill_in 'Cidade', with: ''
       fill_in 'CEP', with: ''
 
+      fill_in 'Check-in', with: ''
+      fill_in 'Check-out', with: ''
+
       click_on 'Criar Pousada'
       # Assert
       expect(page).to have_content 'Pousada não cadastrada'
@@ -69,41 +77,10 @@ describe 'Inn keeper register inn' do
       expect(page).to have_content 'Cidade não pode ficar em branco'
       expect(page).to have_content 'CEP não pode ficar em branco'
 
+      expect(page).to have_content 'Check-in não pode ficar em branco'
+      expect(page).to have_content 'Check-out não pode ficar em branco'
+
       expect(Inn.count).to eq 0
-    end
-  end
-  
-  context 'with optional fields' do
-    it 'successfully' do
-      # Act
-      visit new_inn_path
-
-      fill_in 'Nome fantasia', with: 'Pousada do Alemão'
-      fill_in 'Razão social', with: 'Pousada do Alemão LTDA'
-      fill_in 'CNPJ', with: '12345678901234'
-      fill_in 'Telefone', with: '11999999999'
-      fill_in 'E-mail', with: 'pdalemao@gmail.com'
-      fill_in 'Rua', with: 'Rua dos Bobos, 115'
-      fill_in 'Bairro', with: 'Vila Madalena'
-      fill_in 'Estado', with: 'SP'
-      fill_in 'Cidade', with: 'São Paulo'
-      fill_in 'CEP', with: '05412000'
-
-      click_on 'Criar Pousada'
-      # Assert
-      expect(page).to have_content 'Pousada cadastrada com sucesso'
-
-      last_inn = Inn.last        
-      expect(last_inn.name).to eq 'Pousada do Alemão'
-      expect(last_inn.social_name).to eq 'Pousada do Alemão LTDA'
-      expect(last_inn.cnpj).to eq '12345678901234'
-      expect(last_inn.phone).to eq '11999999999'
-      expect(last_inn.email).to eq 'pdalemao@gmail.com'
-      expect(last_inn.address.street).to eq 'Rua dos Bobos, 115'
-      expect(last_inn.address.neighborhood).to eq 'Vila Madalena'
-      expect(last_inn.address.state).to eq 'SP'
-      expect(last_inn.address.city).to eq 'São Paulo'
-      expect(last_inn.address.zip_code).to eq '05412000'
     end
   end
 end

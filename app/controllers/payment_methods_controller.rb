@@ -10,7 +10,7 @@ class PaymentMethodsController < ApplicationController
       redirect_to my_inn_path, notice: 'Forma de pagamento adicionada com sucesso'
     else
       flash.now[:alert] = 'Forma de pagamento não adicionada'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class PaymentMethodsController < ApplicationController
       redirect_to my_inn_path, notice: 'Forma de pagamento atualizada com sucesso'
     else
       flash.now[:alert] = 'Forma de pagamento não atualizada'
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

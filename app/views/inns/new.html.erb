@@ -1,3 +1,20 @@
 <h1>Cadastro de Pousada</h1>
 
+<% if @inn.errors.any? || @inn.address.errors.any? || @additional_information.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @inn.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    <% @inn.address.errors.full_messages.each do |msg| %>
+      <ul>
+        <li><%= msg %></li>
+      </ul>
+    <% end %>
+    <% @additional_information.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= render 'form' %>
