@@ -10,7 +10,7 @@ describe 'Inn keeper view inn details' do
     
     visit my_inn_path
 
-    expect(page).to have_content 'Nome fantasia: Pousada do Alemão'    
+    expect(page).to have_content 'Nome fantasia: Pousada do Alemão'
     expect(page).to have_content 'Razão social: Pousada do Alemão LTDA'
     expect(page).to have_content 'CNPJ: 12345678901234'
     expect(page).to have_content 'Telefone: 11999999999'

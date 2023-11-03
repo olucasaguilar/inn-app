@@ -5,13 +5,27 @@ class PaymentMethodsController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
-    @payment_method.additional_information = Inn.last.additional_information
 
     if @payment_method.save
       redirect_to my_inn_path, notice: 'Forma de pagamento adicionada com sucesso'
     else
       flash.now[:alert] = 'Forma de pagamento não adicionada'
       render :new
+    end
+  end
+
+  def edit
+    @payment_method = PaymentMethod.find(params[:id])
+  end
+
+  def update
+    @payment_method = PaymentMethod.find(params[:id])
+
+    if @payment_method.update(payment_method_params)
+      redirect_to my_inn_path, notice: 'Forma de pagamento atualizada com sucesso'
+    else
+      flash.now[:alert] = 'Forma de pagamento não atualizada'
+      render :edit
     end
   end
 

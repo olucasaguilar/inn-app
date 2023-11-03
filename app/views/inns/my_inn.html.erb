@@ -29,11 +29,11 @@
   <dd><strong>Aceita Pets:</strong> <%= @inn.additional_information.pets ? 'Sim' : 'Não' %></dd>
 </dl>
 
-<dl>
+<dl id="payment_methods">
   <dt><strong>Formas de pagamento:</strong></dt>
   <% if @inn.additional_information.payment_methods.any? %>
     <% @inn.additional_information.payment_methods.each do |payment_method| %>
-      <dd><%= payment_method.name %></dd>
+      <dd><%= payment_method.name %> <%= link_to 'Editar', edit_payment_method_path(payment_method) %></dd>
     <% end %>
   <% else %>
     <dd>Nenhuma forma de pagamento cadastrada</></dd>
