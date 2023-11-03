@@ -13,6 +13,9 @@ pt-BR:
       payment_method:
         one: "Forma de pagamento"
         other: "Formas de pagamento"
+      users:
+        one: "Usuário"
+        other: "Usuários"
     attributes:
       inn:
         name: "Nome fantasia"
@@ -41,3 +44,6 @@ pt-BR:
         name: "Nome"
         additional_information: "Informações adicionais"
         additional_information_id: "Informações adicionais"
+      user:
+        name: "Nome"
+        innkeeper: "Dono de pousada"
