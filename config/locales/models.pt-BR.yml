@@ -22,6 +22,7 @@ pt-BR:
         email: "E-mail"
         address: "Endereço"
         address_id: "Endereço"
+        status: "Status"
       address:
         street: "Rua"
         neighborhood: "Bairro"

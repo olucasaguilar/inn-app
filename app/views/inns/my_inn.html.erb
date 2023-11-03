@@ -1,7 +1,5 @@
 <h1>Minha Pousada</h1>
 
-<%= link_to 'Editar', edit_inn_path %>
-
 <dl>
   <dt><strong>Nome fantasia: <%= @inn.name %></strong></dt>
   <dd><strong>Razão social:</strong> <%= @inn.social_name %></dd>
@@ -18,7 +16,7 @@
   <dd><strong>CEP:</strong> <%= @inn.address.zip_code %></dd>
 </dl>
 
-<%= link_to 'Editar Informações Adicionais', edit_additional_information_path(@inn.additional_information) %>
+<%= link_to 'Editar', edit_inn_path %>
 
 <dl>
   <dt><strong>Informações adicionais:</strong></dt>
@@ -28,6 +26,8 @@
   <dd><strong>Check-out:</strong> <%= @inn.additional_information.check_out.nil? ? 'Sem Horário de Check-out' : @inn.additional_information.check_out.strftime('%H:%M') %></dd>
   <dd><strong>Aceita Pets:</strong> <%= @inn.additional_information.pets ? 'Sim' : 'Não' %></dd>
 </dl>
+
+<%= link_to 'Editar Informações Adicionais', edit_additional_information_path(@inn.additional_information) %>
 
 <dl id="payment_methods">
   <dt><strong>Formas de pagamento:</strong></dt>
@@ -40,4 +40,9 @@
   <% end %>
 </dl>
 
-<%= link_to 'Adicionar Forma de pagamento', new_payment_method_path %>
+<%= link_to 'Adicionar Forma de pagamento', new_payment_method_path %> <br ><br >
+
+<div>
+  <strong>Status:</strong> <%= @inn.active? ? 'Ativa' : 'Inativa' %>
+  <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
+</div>

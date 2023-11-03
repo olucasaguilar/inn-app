@@ -61,5 +61,17 @@ RSpec.describe Inn, type: :model do
         expect(result).to eq false
       end
     end
+    
+    it 'false when status is empty' do
+      # Arrange
+      address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
+                                state: 'SP', city: 'São Paulo', zip_code: '05412000')                                  
+      inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', cnpj: '12345678901234', 
+                      phone: '11999999999', email: 'alemao@gmail.com', address: address)
+      # Act     
+      result = inn.status 
+      # Assert
+      expect(result).not_to eq nil
+    end
   end
 end

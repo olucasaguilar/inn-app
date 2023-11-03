@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_025943) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_153936) do
   create_table "additional_informations", force: :cascade do |t|
     t.text "description"
     t.text "policies"
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_025943) do
     t.integer "address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["address_id"], name: "index_inns_on_address_id"
   end
 

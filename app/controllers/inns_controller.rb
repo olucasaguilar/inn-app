@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-  before_action :set_my_inn, only: [:my_inn, :edit, :update]
+  before_action :set_my_inn, only: [:my_inn, :edit, :update, :change_status]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -39,6 +39,16 @@ class InnsController < ApplicationController
       flash.now[:alert] = 'Pousada não atualizada'
       render :edit, status: 422
     end
+  end
+
+  def change_status
+    if @inn.inactive?
+      @inn.active! 
+    else
+      @inn.inactive!
+    end
+    flash[:notice] = 'Status atualizado com sucesso'
+    redirect_to my_inn_path
   end
 
   private
