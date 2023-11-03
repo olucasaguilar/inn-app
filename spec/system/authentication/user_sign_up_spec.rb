@@ -17,6 +17,7 @@ describe 'User sign up' do
       # Assert
       expect(page).to have_content 'Boas Vindas! Você realizou seu registro com sucesso.'
       expect(page).to have_content 'Gabriel'
+      expect(page).to have_content '(Proprietário)'
       expect(page).to have_button 'Sair'
       user = User.last
       expect(user.innkeeper?).to be true
@@ -36,6 +37,7 @@ describe 'User sign up' do
   
       # Assert
       expect(page).to have_content 'Pedro'
+      expect(page).to have_content '(Hóspede)'
       user = User.last
       expect(user.innkeeper?).to be false
     end

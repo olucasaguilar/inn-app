@@ -14,13 +14,16 @@
     <header>
       <h1>Pousadaria</h1>
       <nav>
-        <% if user_signed_in? %>
-          <%= current_user.name %>
-          <%= link_to 'Minha Pousada', my_inn_path %>
-          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Tela inicial', root_path %> |
+        <% unless user_signed_in? %>
+          <%= link_to 'Entrar', new_user_session_path %> |
         <% else %>
-          <%= link_to 'Entrar', new_user_session_path %>
+          <%= current_user.name %>
+          <%= current_user.innkeeper? ? '(Proprietário)' : '(Hóspede)' %> |
+          <%= link_to 'Minha Pousada', my_inn_path %>
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>      
         <% end %>
+        <hr>
       </nav>
     </header>
     <main>
