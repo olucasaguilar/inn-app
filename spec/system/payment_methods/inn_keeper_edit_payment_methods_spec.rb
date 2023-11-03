@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # dono de pousada edita pousada
-describe 'Inn edit payment methods' do
+describe 'Inn Keeper edit payment methods' do
   it 'successfully' do
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')

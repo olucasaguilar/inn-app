@@ -1,3 +1,5 @@
 <h1>Editar Forma de pagamento</h1>
 
 <%= render 'form' %>
+
+<%= button_to 'Excluir', payment_method_path(@payment_method), method: :delete, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd><br>

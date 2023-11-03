@@ -1,19 +1,13 @@
 <h1>Editar Informações Adicionais</h1>
 
-<%# fill_in 'Descrição', with: 'Pousada do Alemão é uma pousada muito boa'
-fill_in 'Políticas', with: 'Não aceitamos som alto'
-fill_in 'Horário de Check-in', with: '14:00'
-fill_in 'Horário de Check-out', with: '12:00'
-check 'Aceita Pets'
-click_on 'Atualizar Informações Adicionais' %>
-
-<%# create_table "additional_informations", force: :cascade do |t|
-  t.text "description"
-  t.text "policies"
-  t.time "check_in"
-  t.time "check_out"
-  t.boolean "pets"
-end %>
+<% if @additional_information.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @additional_information.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>  
+  </ul>
+<% end %>
 
 <%= form_with model: @additional_information do |ai| %>
   <div>

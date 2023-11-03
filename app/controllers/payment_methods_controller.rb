@@ -29,6 +29,15 @@ class PaymentMethodsController < ApplicationController
     end
   end
 
+  def destroy
+    @payment_method = PaymentMethod.find(params[:id])
+    if @payment_method.destroy
+      redirect_to my_inn_path, notice: 'Forma de pagamento excluída com sucesso'
+    else
+      redirect_to my_inn_path, notice: 'Erro ao excluir forma de pagamento'
+    end
+  end
+
   private
 
   def payment_method_params

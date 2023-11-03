@@ -5,8 +5,12 @@ class AdditionalInformationsController < ApplicationController
 
   def update
     @additional_information = AdditionalInformation.find_by(inn: Inn.last.id)
-    @additional_information.update(additional_information_params)
-    redirect_to my_inn_path, notice: 'Informações adicionais atualizadas com sucesso'
+    if @additional_information.update(additional_information_params)
+      redirect_to my_inn_path, notice: 'Informações adicionais atualizadas com sucesso'
+    else
+      flash.now[:alert] = 'Informações adicionais não atualizadas'
+      render :edit, status: 422
+    end
   end
 
   private
