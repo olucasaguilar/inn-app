@@ -1,0 +1,73 @@
+<% if @inn.errors.any? || @inn.address.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @inn.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>    
+    <% @inn.address.errors.full_messages.each do |msg| %>
+      <ul>
+        <li><%= msg %></li>
+      </ul>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @inn do |inn| %>
+  <div>
+    <%= inn.label :name %>
+    <%= inn.text_field :name %>
+  </div>
+
+  <div>
+    <%= inn.label :social_name %>
+    <%= inn.text_field :social_name %>
+  </div>
+
+  <div>
+    <%= inn.label :cnpj %>
+    <%= inn.text_field :cnpj %>
+  </div>
+
+  <div>
+    <%= inn.label :phone %>
+    <%= inn.text_field :phone %>
+  </div>
+
+  <div>
+    <%= inn.label :email %>
+    <%= inn.text_field :email %>
+  </div>
+
+  <div>
+    <%= fields_for @inn.address do |address| %>
+      <div>
+        <%= address.label :street %>
+        <%= address.text_field :street %>
+      </div>
+
+      <div>
+        <%= address.label :neighborhood %>
+        <%= address.text_field :neighborhood %>
+      </div>
+
+      <div>
+        <%= address.label :state %>
+        <%= address.text_field :state %>
+      </div>
+
+      <div>
+        <%= address.label :city %>
+        <%= address.text_field :city %>
+      </div>
+
+      <div>
+        <%= address.label :zip_code %>
+        <%= address.text_field :zip_code %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= inn.submit %>
+  </div>
+<% end %>

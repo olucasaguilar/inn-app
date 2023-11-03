@@ -1,0 +1,42 @@
+pt-BR:
+  activerecord:
+    models:
+      inn:
+        one: "Pousada"
+        other: "Pousadas"
+      address:
+        one: "Endereço"
+        other: "Endereços"
+      additional_information:
+        one: "Informações Adicionais"
+        other: "Informações Adicionais"
+      payment_method:
+        one: "Forma de pagamento"
+        other: "Formas de pagamento"
+    attributes:
+      inn:
+        name: "Nome fantasia"
+        social_name: "Razão social"
+        cnpj: "CNPJ"
+        phone: "Telefone"
+        email: "E-mail"
+        address: "Endereço"
+        address_id: "Endereço"
+      address:
+        street: "Rua"
+        neighborhood: "Bairro"
+        state: "Estado"
+        city: "Cidade"
+        zip_code: "CEP"
+      additional_information:
+        description: "Descrição"
+        policies: "Políticas"
+        check_in: "Check-in"
+        check_out: "Check-out"
+        pets: "Aceita pets"
+        inn: "Pousada"
+        inn_id: "Pousada"
+      payment_method:
+        name: "Nome"
+        additional_information: "Informações adicionais"
+        additional_information_id: "Informações adicionais"
