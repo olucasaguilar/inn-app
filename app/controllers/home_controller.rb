@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
-  def index
+  before_action :force_inn_creation, only: [:home]
+  
+  def home
   end
 end

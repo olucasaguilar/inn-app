@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe 'Inn keeper register inn' do
+describe 'Inn keeper register inn' do  
   context 'with required fields' do
     it 'successfully' do
+      user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
       # Act
+      login_as(user)
       visit new_inn_path
 
       fill_in 'Nome fantasia', with: 'Pousada do Alemão'
@@ -42,6 +44,8 @@ describe 'Inn keeper register inn' do
     end
     
     it 'and must fill all required fields' do
+      user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+      login_as(user)
       # Act
       visit new_inn_path
 

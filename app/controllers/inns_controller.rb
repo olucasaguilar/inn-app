@@ -1,5 +1,7 @@
 class InnsController < ApplicationController
   before_action :set_my_inn, only: [:my_inn, :edit, :update, :change_status]
+  before_action :verify_inn_keeper, only: [:new]
+  before_action :block_guests, only: [:new]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -15,6 +17,7 @@ class InnsController < ApplicationController
     @additional_information.valid?
 
     if @inn.valid? && @additional_information.valid?
+      @inn.user = current_user
       @inn.save
       @additional_information.save
       redirect_to my_inn_path, notice: 'Pousada cadastrada com sucesso'
@@ -24,7 +27,9 @@ class InnsController < ApplicationController
     end
   end
 
-  def my_inn; end
+  def my_inn
+    redirect_to new_inn_path if @inn.blank?
+  end
 
   def edit; end
 
@@ -54,7 +59,7 @@ class InnsController < ApplicationController
   private
 
   def set_my_inn
-    @inn = Inn.last
+    @inn = current_user.inn
   end
 
   def inn_params
@@ -63,5 +68,5 @@ class InnsController < ApplicationController
 
   def address_params
     params.require(:address).permit(:street, :neighborhood, :state, :city, :zip_code)
-  end
+  end 
 end

@@ -22,7 +22,6 @@ describe 'User authenticate' do
       expect(page).not_to have_link 'Entrar'
       expect(page).to have_button 'Sair'
       expect(page).to have_content 'Lucas'
-      expect(page).to have_link 'Minha Pousada'
     end
   end
 

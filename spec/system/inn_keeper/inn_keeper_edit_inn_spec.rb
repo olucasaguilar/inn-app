@@ -3,6 +3,8 @@ require 'rails_helper'
 # dono de pousada edita pousada
 describe 'Inn keeper edit inn' do
   it 'successfully' do
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    login_as(user)
     # Arrange
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
@@ -32,6 +34,8 @@ describe 'Inn keeper edit inn' do
 
   it 'and must fill all required fields' do
     # Arrange
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    login_as(user)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
@@ -54,6 +58,8 @@ describe 'Inn keeper edit inn' do
   end
 
   it 'and add additional informations' do
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    login_as(user)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 

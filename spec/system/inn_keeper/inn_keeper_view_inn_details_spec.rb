@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe 'Inn keeper view inn details' do
   it 'successfully' do
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    login_as(user)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
-                      address: address)
-    
+                      address: address)    
     visit my_inn_path
 
     expect(page).to have_content 'Nome fantasia: Pousada do Alemão'

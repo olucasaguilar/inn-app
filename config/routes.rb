@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'home#index'
+  root to: 'home#home'
   
   get 'my_inn', to: 'inns#my_inn', as: 'my_inn'
   patch 'my_inn/status', to: 'inns#change_status', as: 'change_status'

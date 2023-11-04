@@ -2,6 +2,7 @@ class Inn < ApplicationRecord
   after_create :create_additional_information
 
   belongs_to :address
+  belongs_to :user
   has_one :additional_information
 
   validates :name, :social_name, :cnpj, :phone, :email, presence: true
