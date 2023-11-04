@@ -12,6 +12,8 @@ class Inn < ApplicationRecord
 
   after_initialize :set_defaults
 
+  validate :user_is_innkeeper
+
   private
 
   def create_additional_information
@@ -21,5 +23,11 @@ class Inn < ApplicationRecord
 
   def set_defaults
     self.status ||= :inactive
+  end
+  
+  def user_is_innkeeper
+    if self.user.innkeeper == false
+      errors.add(:user, "is not an innkeeper")
+    end
   end
 end

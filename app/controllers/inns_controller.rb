@@ -1,7 +1,8 @@
 class InnsController < ApplicationController
-  before_action :set_my_inn, only: [:my_inn, :edit, :update, :change_status]
-  before_action :verify_inn_keeper, only: [:new]
-  before_action :block_guests, only: [:new, :edit]
+  before_action :set_my_inn,          only: [:my_inn, :edit, :update, :change_status]
+  before_action :verify_inn_keeper,   only: [:new]
+  before_action :block_guests,        only: [:new, :edit, :my_inn]
+  before_action :force_inn_creation,  only: [:edit, :my_inn]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -30,7 +31,7 @@ class InnsController < ApplicationController
   end
 
   def my_inn
-    redirect_to new_inn_path if @inn.blank?
+    #redirect_to new_inn_path if @inn.blank?
   end
 
   def edit; end

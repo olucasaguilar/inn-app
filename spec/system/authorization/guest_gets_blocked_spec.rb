@@ -6,7 +6,6 @@ describe 'Guest gets blocked' do
     # Act
     login_as(user)
     visit new_inn_path
-
     # Assert
     expect(current_path).to eq root_path
     expect(page).not_to have_content 'Nome fantasia:'
@@ -20,7 +19,6 @@ describe 'Guest gets blocked' do
     # Act
     login_as(user)
     visit my_inn_path
-
     # Assert
     expect(current_path).to eq root_path
     expect(page).not_to have_content 'Nome fantasia:'
@@ -34,7 +32,6 @@ describe 'Guest gets blocked' do
     # Act
     login_as(user)
     visit edit_inn_path
-
     # Assert
     expect(current_path).to eq root_path
     expect(page).not_to have_content 'Nome fantasia:'
