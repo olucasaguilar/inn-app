@@ -12,6 +12,7 @@ class InnsController < ApplicationController
   def create
     @inn = Inn.new(inn_params)
     @inn.address = Address.new(address_params)
+    @inn.user_id = current_user.id
     @additional_information = AdditionalInformation.new(additional_information_params)
     @additional_information.inn = @inn
     
@@ -20,7 +21,6 @@ class InnsController < ApplicationController
     both_valid = false if @additional_information.invalid?
 
     if both_valid
-      @inn.user = current_user
       @inn.save
       @additional_information.save
       redirect_to my_inn_path, notice: 'Pousada cadastrada com sucesso'
@@ -30,9 +30,7 @@ class InnsController < ApplicationController
     end
   end
 
-  def my_inn
-    #redirect_to new_inn_path if @inn.blank?
-  end
+  def my_inn; end
 
   def edit; end
 

@@ -27,7 +27,7 @@ class Inn < ApplicationRecord
   
   def user_is_innkeeper
     if self.user.innkeeper == false
-      errors.add(:user, "is not an innkeeper")
+      errors.add(:user, "não é um proprietário de pousada")
     end
   end
 end
