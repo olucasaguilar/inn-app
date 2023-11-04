@@ -1,3 +1,4 @@
+
 <h1>Minha Pousada</h1>
 
 <dl>
@@ -20,10 +21,10 @@
 
 <dl>
   <dt><strong>Informações adicionais:</strong></dt>
-  <dd><strong>Descrição:</strong> <%= @inn.additional_information.description.nil? ? 'Sem Descrição' : @inn.additional_information.description %></dd>
-  <dd><strong>Políticas:</strong> <%= @inn.additional_information.policies.nil? ? 'Sem Políticas' : @inn.additional_information.policies %></dd>
-  <dd><strong>Check-in:</strong> <%= @inn.additional_information.check_in.nil? ? 'Sem Horário de Check-in' : @inn.additional_information.check_in.strftime('%H:%M') %></dd>
-  <dd><strong>Check-out:</strong> <%= @inn.additional_information.check_out.nil? ? 'Sem Horário de Check-out' : @inn.additional_information.check_out.strftime('%H:%M') %></dd>
+  <dd><strong>Descrição:</strong> <%= @inn.additional_information.description.presence || 'Sem Descrição' %></dd>
+  <dd><strong>Políticas:</strong> <%= @inn.additional_information.policies.presence || 'Sem Políticas' %></dd>
+  <dd><strong>Check-in:</strong> <%= @inn.additional_information.check_in.strftime('%H:%M') %></dd>
+  <dd><strong>Check-out:</strong> <%= @inn.additional_information.check_out.strftime('%H:%M') %></dd>
   <dd><strong>Aceita Pets:</strong> <%= @inn.additional_information.pets ? 'Sim' : 'Não' %></dd>
 </dl>
 

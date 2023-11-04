@@ -1,7 +1,7 @@
 class InnsController < ApplicationController
   before_action :set_my_inn, only: [:my_inn, :edit, :update, :change_status]
   before_action :verify_inn_keeper, only: [:new]
-  before_action :block_guests, only: [:new]
+  before_action :block_guests, only: [:new, :edit]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -11,12 +11,14 @@ class InnsController < ApplicationController
   def create
     @inn = Inn.new(inn_params)
     @inn.address = Address.new(address_params)
-    @additional_information = AdditionalInformation.new(check_in: params[:additional_information][:check_in], 
-                                                        check_out: params[:additional_information][:check_out],
-                                                        inn: @inn)
-    @additional_information.valid?
+    @additional_information = AdditionalInformation.new(additional_information_params)
+    @additional_information.inn = @inn
+    
+    both_valid = true
+    both_valid = false if @inn.invalid?
+    both_valid = false if @additional_information.invalid?
 
-    if @inn.valid? && @additional_information.valid?
+    if both_valid
       @inn.user = current_user
       @inn.save
       @additional_information.save
@@ -47,11 +49,7 @@ class InnsController < ApplicationController
   end
 
   def change_status
-    if @inn.inactive?
-      @inn.active! 
-    else
-      @inn.inactive!
-    end
+    @inn.active? ? @inn.inactive! : @inn.active!
     flash[:notice] = 'Status atualizado com sucesso'
     redirect_to my_inn_path
   end
@@ -68,5 +66,9 @@ class InnsController < ApplicationController
 
   def address_params
     params.require(:address).permit(:street, :neighborhood, :state, :city, :zip_code)
-  end 
+  end
+
+  def additional_information_params
+    params.require(:additional_information).permit(:check_in, :check_out)
+  end
 end
