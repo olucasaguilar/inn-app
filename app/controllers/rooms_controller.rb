@@ -32,6 +32,14 @@ class RoomsController < ApplicationController
     end
   end
 
+  def change_status
+    @room = Room.find(params[:room_id])
+    @room.status? ? @room.status = false : @room.status = true
+    @room.save
+    flash[:notice] = 'Disponibilidade atualizada com sucesso'
+    redirect_to my_inn_path
+  end
+
   private
 
   def room_params

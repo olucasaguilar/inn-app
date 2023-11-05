@@ -45,7 +45,7 @@
 
 <div>
   <strong>Status:</strong> <%= @inn.active? ? 'Ativa' : 'Inativa' %>
-  <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
+  <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", inn_change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
 </div>
 
 <dl id="rooms">
@@ -65,6 +65,8 @@
       <dd><strong>Cofre:</strong> <%= room.safe ? 'Sim' : 'Não' %></dd>
       <dd><strong>Acessibilidade:</strong> <%= room.accessible ? 'Sim' : 'Não' %></dd>
       <dd><%= link_to 'Editar', edit_room_path(room) %></dd>
+      <dd><strong>Disponível para reserva:</strong> <%= room.status ? 'Sim' : 'Não' %></dd>
+      <dd><%= button_to "#{ room.status? ? 'Indisponibilizar' : 'Disponibilizar' }", room_change_status_path(room), method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd>
       <br >
     <% end %>
   <% else %>

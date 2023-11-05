@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_05_193309) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_220827) do
   create_table "additional_informations", force: :cascade do |t|
     t.text "description"
     t.text "policies"
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_193309) do
     t.boolean "wardrobe"
     t.boolean "safe"
     t.boolean "accessible"
+    t.boolean "status"
     t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 
