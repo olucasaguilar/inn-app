@@ -21,8 +21,7 @@ class PaymentMethodsController < ApplicationController
 
   def edit
     user_related_to_this_payment_method = @payment_method.additional_information.inn.user
-    this_payment_method_belongs_to_current_user = user_related_to_this_payment_method == current_user
-    unless this_payment_method_belongs_to_current_user
+    if user_related_to_this_payment_method != current_user
       redirect_to my_inn_path
     end
   end

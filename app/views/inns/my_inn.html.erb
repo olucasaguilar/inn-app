@@ -48,7 +48,7 @@
   <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
 </div>
 
-<dl>
+<dl id="rooms">
   <dt><strong>Quartos:</strong></dt>
   <% if @inn.rooms.any? %>
     <% @inn.rooms.each do |room| %>
@@ -64,6 +64,7 @@
       <dd><strong>Guarda-roupa:</strong> <%= room.wardrobe ? 'Sim' : 'Não' %></dd>
       <dd><strong>Cofre:</strong> <%= room.safe ? 'Sim' : 'Não' %></dd>
       <dd><strong>Acessibilidade:</strong> <%= room.accessible ? 'Sim' : 'Não' %></dd>
+      <dd><%= link_to 'Editar', edit_room_path(room) %></dd>
       <br >
     <% end %>
   <% else %>

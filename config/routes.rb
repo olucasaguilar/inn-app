@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :inns, only: [:new, :create, :show, :update]  
   resources :additional_informations, only: [:update]
   resources :payment_methods, only: [:new, :create, :edit, :update, :destroy]
-  resources :rooms, only: [:new, :create]
+  resources :rooms, only: [:new, :create, :edit, :update]
 end
