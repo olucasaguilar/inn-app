@@ -64,9 +64,9 @@
       <dd><strong>Guarda-roupa:</strong> <%= room.wardrobe ? 'Sim' : 'Não' %></dd>
       <dd><strong>Cofre:</strong> <%= room.safe ? 'Sim' : 'Não' %></dd>
       <dd><strong>Acessibilidade:</strong> <%= room.accessible ? 'Sim' : 'Não' %></dd>
-      <dd><%= link_to 'Editar', edit_room_path(room) %></dd>
       <dd><strong>Disponível para reserva:</strong> <%= room.status ? 'Sim' : 'Não' %></dd>
       <dd><%= button_to "#{ room.status? ? 'Indisponibilizar' : 'Disponibilizar' }", room_change_status_path(room), method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd>
+      <dd><%= link_to 'Editar', edit_room_path(room) %></dd>
       <br >
     <% end %>
   <% else %>

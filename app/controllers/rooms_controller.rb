@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_action :block_guests
+  before_action :force_inn_creation
+
   def new
     @room = Room.new
   end
@@ -18,6 +21,9 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find(params[:id])
+    if @room.inn.user != current_user
+      redirect_to my_inn_path
+    end
   end
 
   def update
