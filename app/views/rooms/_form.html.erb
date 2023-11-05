@@ -1,0 +1,74 @@
+<% if @room.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @room.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @room do |room| %>
+  <div>
+    <%= room.label :name %>
+    <%= room.text_field :name %>
+  </div>
+  
+  <div>
+    <%= room.label :description %>
+    <%= room.text_area :description %>
+  </div>
+  
+  <div>
+    <%= room.label :dimension %>
+    <%= room.number_field :dimension %>
+  </div>
+
+  <div>
+    <%= room.label :max_occupancy %>
+    <%= room.number_field :max_occupancy %>
+  </div>
+
+  <div>
+    <%= room.label :value %>
+    <%= room.number_field :value %>
+  </div>
+
+  <div>
+    <%= room.label :bathroom %>
+    <%= room.check_box :bathroom %>
+  </div>
+
+  <div>
+    <%= room.label :balcony %>
+    <%= room.check_box :balcony %>
+  </div>
+
+  <div>
+    <%= room.label :air_conditioning %>
+    <%= room.check_box :air_conditioning %>
+  </div>
+
+  <div>
+    <%= room.label :tv %>
+    <%= room.check_box :tv %>
+  </div>
+
+  <div>
+    <%= room.label :wardrobe %>
+    <%= room.check_box :wardrobe %>
+  </div>
+
+  <div>
+    <%= room.label :safe %>
+    <%= room.check_box :safe %>
+  </div>
+
+  <div>
+    <%= room.label :accessible %>
+    <%= room.check_box :accessible %>
+  </div>
+
+  <div>
+    <%= room.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_221223) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_193309) do
   create_table "additional_informations", force: :cascade do |t|
     t.text "description"
     t.text "policies"
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_221223) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
-    t.integer "user_id", default: 1, null: false
+    t.integer "user_id", null: false
     t.index ["address_id"], name: "index_inns_on_address_id"
     t.index ["user_id"], name: "index_inns_on_user_id"
   end
@@ -54,6 +54,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_221223) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["additional_information_id"], name: "index_payment_methods_on_additional_information_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "dimension"
+    t.integer "max_occupancy"
+    t.integer "value"
+    t.integer "inn_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "bathroom"
+    t.boolean "balcony"
+    t.boolean "air_conditioning"
+    t.boolean "tv"
+    t.boolean "wardrobe"
+    t.boolean "safe"
+    t.boolean "accessible"
+    t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,4 +93,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_221223) do
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"
   add_foreign_key "payment_methods", "additional_informations"
+  add_foreign_key "rooms", "inns"
 end

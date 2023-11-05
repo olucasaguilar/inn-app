@@ -47,3 +47,6 @@
   <strong>Status:</strong> <%= @inn.active? ? 'Ativa' : 'Inativa' %>
   <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
 </div>
+
+<%# Quartos %>
+<%= link_to 'Adicionar quarto', new_room_path %> <br ><br >

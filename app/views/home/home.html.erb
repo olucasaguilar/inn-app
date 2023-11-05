@@ -1,0 +1,12 @@
+<% unless @inns.nil? %>
+  <h2>Lista de Pousadas</h2>
+  
+  <% @inns.each do |inn| %>
+    <dl>
+      <dt><strong>Nome: <%= inn.name %></strong></dt>
+      <dd><strong>Dono:</strong>  <%= inn.user.name %></dd>
+      <dd><strong>Cidade:</strong> <%= inn.address.city %> - <%= inn.address.state %></dd>
+      <dd><strong>E-mail:</strong> <%= inn.email %></dd>
+    </dl>
+  <% end %>
+<% end %>

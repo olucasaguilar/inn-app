@@ -10,7 +10,7 @@ describe 'Inn keeper change inn status' do
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
-                      address: address)
+                      address: address, user: user)
     # Act
     visit my_inn_path
     expect(page).to have_content 'Status: Inativa'
@@ -31,7 +31,7 @@ describe 'Inn keeper change inn status' do
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
-                      address: address)
+                      address: address, user: user)
     inn.active!
     # Act
     visit my_inn_path

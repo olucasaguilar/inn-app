@@ -16,6 +16,9 @@ pt-BR:
       users:
         one: "Usuário"
         other: "Usuários"
+      room:
+        one: "Quarto"
+        other: "Quartos"
     attributes:
       inn:
         name: "Nome fantasia"
@@ -47,3 +50,18 @@ pt-BR:
       user:
         name: "Nome"
         innkeeper: "Dono de pousada"
+      room:
+        name: "Nome"
+        description: "Descrição"
+        dimension: "Dimensão"
+        max_occupancy: "Quantidade máxima de pessoas"
+        value: "Valor da diária"
+        inn: "Pousada"
+        inn_id: "Pousada"
+        bathroom: "Banheiro"
+        balcony: "Varanda"
+        air_conditioning: "Ar condicionado"
+        tv: "TV"
+        wardrobe: "Guarda-roupa"
+        safe: "Cofre"
+        accessible: "Acessibilidade"

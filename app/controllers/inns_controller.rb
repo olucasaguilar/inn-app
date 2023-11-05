@@ -1,8 +1,8 @@
 class InnsController < ApplicationController
-  before_action :set_my_inn,          only: [:my_inn, :edit, :update, :change_status]
-  before_action :verify_inn_keeper,   only: [:new]
-  before_action :block_guests,        only: [:new, :edit, :my_inn]
-  before_action :force_inn_creation,  only: [:edit, :my_inn]
+  before_action :set_my_inn,                only: [:my_inn, :edit, :update, :change_status]
+  before_action :redirect_inn_keeper_out,   only: [:new]
+  before_action :block_guests
+  before_action :force_inn_creation,        only: [:edit, :my_inn]
 
   def new
     @inn = Inn.new(address: Address.new)

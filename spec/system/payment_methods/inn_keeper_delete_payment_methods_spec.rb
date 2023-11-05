@@ -9,7 +9,7 @@ describe 'Inn Keeper delete payment methods' do
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
-                      address: address)
+                      address: address, user: user)
     pm = PaymentMethod.create!(name: 'Cartão de crédito', additional_information: inn.additional_information)
 
     visit my_inn_path

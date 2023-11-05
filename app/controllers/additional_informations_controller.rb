@@ -1,5 +1,5 @@
 class AdditionalInformationsController < ApplicationController
-  before_action :block_guests, only: [:edit]
+  before_action :block_guests
   before_action :force_inn_creation, only: [:edit]
   before_action :set_additional_information, only: [:edit, :update]
 

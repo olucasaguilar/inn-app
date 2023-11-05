@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :innkeeper])
   end
   
-  def verify_inn_keeper
+  def redirect_inn_keeper_out
     if current_user && current_user.inn.present?
       redirect_to my_inn_path
     end
