@@ -48,5 +48,27 @@
   <%= button_to "#{ @inn.active? ? 'Inativar' : 'Ativar' }", change_status_path, method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %>
 </div>
 
-<%# Quartos %>
+<dl>
+  <dt><strong>Quartos:</strong></dt>
+  <% if @inn.rooms.any? %>
+    <% @inn.rooms.each do |room| %>
+      <dd><strong>Nome:</strong> <%= room.name %></dd>
+      <dd><strong>Descrição:</strong> <%= room.description %></dd>
+      <dd><strong>Dimensão:</strong> <%= room.dimension %> m²</dd>
+      <dd><strong>Ocupação máxima:</strong> <%= room.max_occupancy %> pessoas</dd>
+      <dd><strong>Valor da diária:</strong> <%= number_to_currency(room.value) %></dd>
+      <dd><strong>Banheiro:</strong> <%= room.bathroom ? 'Sim' : 'Não' %></dd>
+      <dd><strong>Sacada:</strong> <%= room.balcony ? 'Sim' : 'Não' %></dd>
+      <dd><strong>Ar condicionado:</strong> <%= room.air_conditioning ? 'Sim' : 'Não' %></dd>
+      <dd><strong>TV:</strong> <%= room.tv ? 'Sim' : 'Não' %></dd>
+      <dd><strong>Guarda-roupa:</strong> <%= room.wardrobe ? 'Sim' : 'Não' %></dd>
+      <dd><strong>Cofre:</strong> <%= room.safe ? 'Sim' : 'Não' %></dd>
+      <dd><strong>Acessibilidade:</strong> <%= room.accessible ? 'Sim' : 'Não' %></dd>
+      <br >
+    <% end %>
+  <% else %>
+    <dd>Nenhum quarto cadastrado</></dd>
+  <% end %>
+</dl>
+
 <%= link_to 'Adicionar quarto', new_room_path %> <br ><br >
