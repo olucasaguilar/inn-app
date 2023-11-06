@@ -8,14 +8,13 @@ describe 'Inn keeper edits a room' do
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
-    Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+    room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                  max_occupancy: 2, value: 200, inn: inn)
     # Act
     login_as(user)
-    visit my_inn_path
-    within 'dl#rooms' do
-      click_on 'Editar'
-    end
+    visit room_path(room)
+    click_on 'Editar'
+
     # Assert
     expect(page).to have_content 'Editar Quarto'
     expect(page).to have_field 'Nome', with: 'Quarto 1'
@@ -33,21 +32,20 @@ describe 'Inn keeper edits a room' do
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
-    Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+    room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                  max_occupancy: 2, value: 200, inn: inn)
     # Act
     login_as(user)
-    visit my_inn_path
-    within 'dl#rooms' do
-      click_on 'Editar'
-    end
+    visit room_path(room)
+    click_on 'Editar'
+
     fill_in 'Nome', with: 'Quarto Azul'
     fill_in 'Descrição', with: 'Quarto com vista para o mar'
     check 'Banheiro'
     click_on 'Atualizar Quarto'
     # Assert
     expect(page).to have_content 'Quarto Azul atualizado com sucesso'
-    expect(page).to have_content 'Nome: Quarto Azul'
+    expect(page).to have_content 'Detalhes do quarto: Quarto Azul'
     expect(page).to have_content 'Descrição: Quarto com vista para o mar'
     expect(page).to have_content 'Banheiro: Sim'
   end
@@ -59,14 +57,13 @@ describe 'Inn keeper edits a room' do
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
-    Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+    room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                  max_occupancy: 2, value: 200, inn: inn)
     # Act
     login_as(user)
-    visit my_inn_path
-    within 'dl#rooms' do
-      click_on 'Editar'
-    end
+    visit room_path(room)
+    click_on 'Editar'
+
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
     fill_in 'Dimensão', with: ''

@@ -8,11 +8,11 @@ describe 'Inn keeper changes room status' do
     inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
-    Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+    room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                  max_occupancy: 2, value: 200, inn: inn)
     # Act
     login_as(user)
-    visit my_inn_path
+    visit room_path(room)
     # Assert
     expect(page).to have_content 'Disponível para reserva: Não'
   end
@@ -25,14 +25,12 @@ describe 'Inn keeper changes room status' do
       inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                         cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                         address: address, user: user)
-      Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+      room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                   max_occupancy: 2, value: 200, inn: inn)
       # Act
       login_as(user)
-      visit my_inn_path
-      within 'dl#rooms' do
-        click_on 'Disponibilizar'
-      end
+      visit room_path(room)
+      click_on 'Disponibilizar'
       # Assert
       expect(page).to have_content 'Disponível para reserva: Sim'
     end
@@ -44,14 +42,12 @@ describe 'Inn keeper changes room status' do
       inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
                         cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                         address: address, user: user)
-      Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
+      room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
                   max_occupancy: 2, value: 200, inn: inn, status: true)
       # Act
       login_as(user)
-      visit my_inn_path
-      within 'dl#rooms' do
-        click_on 'Indisponibilizar'
-      end
+      visit room_path(room)
+      click_on 'Indisponibilizar'
       # Assert
       expect(page).to have_content 'Disponível para reserva: Não'
     end

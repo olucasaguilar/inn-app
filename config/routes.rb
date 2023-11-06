@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get       '/aditional/edit/:id',  to: 'inn_additionals#edit',   as: 'edit_inn_additional'
     patch     '/aditional/:id',       to: 'inn_additionals#update', as: 'inn_additional'
     
-    resources :rooms, only: [:new, :create, :edit, :update] do
+    resources :rooms, only: [:new, :create, :edit, :update, :show] do
       patch 'status', to: 'rooms#change_status', as: 'status'
       resources :price_periods, only: [:index]
     end
