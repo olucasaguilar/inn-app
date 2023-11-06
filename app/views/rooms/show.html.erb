@@ -16,7 +16,7 @@
     <dd><strong>Disponível para reserva:</strong> <%= @room.status ? 'Sim' : 'Não' %></dd>
     <dd><%= button_to "#{ @room.status? ? 'Indisponibilizar' : 'Disponibilizar' }", room_status_path(@room), method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd><br >
 
-    <dd><%= link_to 'Preços por período', room_price_periods_path(@room) %></dd>
+    <dd><%= link_to 'Preços por período', price_periods_path(@room) %></dd>
   </dt>
 </dl>
 

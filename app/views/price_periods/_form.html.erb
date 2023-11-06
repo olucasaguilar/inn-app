@@ -1,0 +1,29 @@
+<% if @price_period.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @price_period.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @price_period) do |pp| %>
+  <div>
+    <%= pp.label :value %>
+    <%= pp.number_field :value %>
+  </div>
+
+  <div>
+    <%= pp.label :start_date %>
+    <%= pp.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= pp.label :end_date %>
+    <%= pp.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= pp.submit %>
+  </div>
+<% end %>

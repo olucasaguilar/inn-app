@@ -19,6 +19,9 @@ pt-BR:
       room:
         one: "Quarto"
         other: "Quartos"
+      price_period:
+        one: "Preço por Período"
+        other: "Preços por Período"
     attributes:
       inn:
         name: "Nome fantasia"
@@ -65,3 +68,9 @@ pt-BR:
         wardrobe: "Guarda-roupa"
         safe: "Cofre"
         accessible: "Acessibilidade"
+      price_period:
+        value: "Valor"
+        start_date: "Data de início"
+        end_date: "Data de término"
+        room: "Quarto"
+        room_id: "Quarto"

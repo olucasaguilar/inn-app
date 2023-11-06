@@ -13,7 +13,10 @@ Rails.application.routes.draw do
     
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       patch 'status', to: 'rooms#change_status', as: 'status'
-      resources :price_periods, only: [:index]
+    end
+
+    scope 'room/:room_id' do
+      resources :price_periods, only: [:index, :new, :create, :update]
     end
 
     resources :payment_methods, only: [:new, :create, :edit, :update, :destroy]
