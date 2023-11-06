@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Inn keeper edits a room' do
-  it 'from my_inn_path' do
+  it 'from room_path' do
     user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')

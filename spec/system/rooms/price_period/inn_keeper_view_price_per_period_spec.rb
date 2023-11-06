@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Inn keeper view price per period page' do
+describe 'Inn keeper view a rooms prices per period page' do
   it 'successfully' do
     # Arrange
     user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
