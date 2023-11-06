@@ -7,6 +7,15 @@
       <dd><strong>Dono:</strong>  <%= inn.user.name %></dd>
       <dd><strong>Cidade:</strong> <%= inn.address.city %> - <%= inn.address.state %></dd>
       <dd><strong>E-mail:</strong> <%= inn.email %></dd>
-    </dl>
+      <dd>
+        <% inn.rooms.where(status: true).each do |room| %>
+          <dl>
+            <dt><strong>Quartos</strong></dt>
+            <dd><strong>Nome: <%= room.name %></strong></dd>
+            <dd><strong>Descrição:</strong> <%= room.description %></dd>
+          </dl><hr >
+        <% end %>
+      </dd>
+    </dl><hr >
   <% end %>
 <% end %>

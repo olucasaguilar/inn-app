@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_05_233816) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_06_015034) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -56,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_233816) do
     t.index ["inn_additional_id"], name: "index_payment_methods_on_inn_additional_id"
   end
 
+  create_table "price_periods", force: :cascade do |t|
+    t.integer "value"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_price_periods_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -94,5 +104,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_233816) do
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"
   add_foreign_key "payment_methods", "inn_additionals"
+  add_foreign_key "price_periods", "rooms"
   add_foreign_key "rooms", "inns"
 end

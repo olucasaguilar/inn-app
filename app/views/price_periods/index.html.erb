@@ -1,0 +1,15 @@
+<h1>Preços por período</h1>
+<h2><%= @room.name %></h2>
+
+<% @room.price_periods.each do |price_period| %>
+  <p>
+    <%= price_period.start_date.strftime("%d/%m/%Y") %> a <%= price_period.end_date.strftime("%d/%m/%Y") %>
+    <%= number_to_currency(price_period.value) %> 
+  </p> <br >
+<% end %>
+
+<% if @room.price_periods.empty? %>
+  <p>Nenhum preço cadastrado</p>
+<% end %>
+
+<%= link_to 'Voltar', my_inn_path %>
