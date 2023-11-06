@@ -1,11 +1,12 @@
 <h1>Preços por período</h1>
 <h2><%= @room.name %></h2>
 
-<%= link_to 'Cadastrar novo preço', new_price_period_path(@room.id) %>
+<%= link_to 'Cadastrar novo preço', new_price_period_path(@room) %>
 
 <% @room.price_periods.each do |price_period| %>
   <p>
-    <%= price_period.start_date.strftime("%d/%m/%Y") %> a <%= price_period.end_date.strftime("%d/%m/%Y") %>
+    <% price_period_string = price_period.start_date.strftime("%d/%m/%Y") + " a " + price_period.end_date.strftime("%d/%m/%Y") %>
+    <%= link_to price_period_string, edit_price_period_path(@room, price_period) %> -
     <%= number_to_currency(price_period.value) %> 
   </p> <br >
 <% end %>

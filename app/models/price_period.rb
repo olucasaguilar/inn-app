@@ -8,11 +8,13 @@ class PricePeriod < ApplicationRecord
   def dates_must_not_be_within_a_period
     periods = PricePeriod.where(room_id: self.room_id)
     periods.each do |period|
-      if self.start_date >= period.start_date && self.start_date <= period.end_date
-        errors.add(:start_date, "já está dentro de um período cadastrado")
-      end
-      if self.end_date >= period.start_date && self.end_date <= period.end_date
-        errors.add(:end_date, "já está dentro de um período cadastrado")
+      unless self.id == period.id
+        if self.start_date >= period.start_date && self.start_date <= period.end_date
+          errors.add(:start_date, "já está dentro de um período cadastrado")
+        end
+        if self.end_date >= period.start_date && self.end_date <= period.end_date
+          errors.add(:end_date, "já está dentro de um período cadastrado")
+        end
       end
     end
   end
