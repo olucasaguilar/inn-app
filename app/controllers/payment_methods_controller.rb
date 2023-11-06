@@ -9,7 +9,7 @@ class PaymentMethodsController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
-    @payment_method.additional_information = current_user.inn.additional_information
+    @payment_method.inn_additional = current_user.inn.inn_additional
 
     if @payment_method.save
       redirect_to my_inn_path, notice: 'Forma de pagamento adicionada com sucesso'
@@ -20,7 +20,7 @@ class PaymentMethodsController < ApplicationController
   end
 
   def edit
-    user_related_to_this_payment_method = @payment_method.additional_information.inn.user
+    user_related_to_this_payment_method = @payment_method.inn_additional.inn.user
     if user_related_to_this_payment_method != current_user
       redirect_to my_inn_path
     end

@@ -22,7 +22,7 @@ describe 'Inn keeper gets blocked' do
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
     inn = Inn.create!(name: 'Pousada', social_name: 'Pousada do Alemão LTDA', cnpj: '12345678901234', 
                       phone: '11999999999', email: 'teste@gmail.com', address: address, user: user)
-    PaymentMethod.create!(name: 'Cartão de crédito', additional_information: inn.additional_information)
+    PaymentMethod.create!(name: 'Cartão de crédito', inn_additional: inn.inn_additional)
     # Arrange
     user2 = User.create!(name: 'Pedro', email: 'pedro@gmail.com', password: '654321', innkeeper: true)
     address2 = Address.new(street: 'Rua dos Tolos, 115', neighborhood: 'Vila Madarena', 

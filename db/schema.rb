@@ -10,19 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_05_220827) do
-  create_table "additional_informations", force: :cascade do |t|
-    t.text "description"
-    t.text "policies"
-    t.time "check_in"
-    t.time "check_out"
-    t.boolean "pets"
-    t.integer "inn_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["inn_id"], name: "index_additional_informations_on_inn_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_233816) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -31,6 +19,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_220827) do
     t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inn_additionals", force: :cascade do |t|
+    t.text "description"
+    t.text "policies"
+    t.time "check_in"
+    t.time "check_out"
+    t.boolean "pets"
+    t.integer "inn_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inn_id"], name: "index_inn_additionals_on_inn_id"
   end
 
   create_table "inns", force: :cascade do |t|
@@ -50,10 +50,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_220827) do
 
   create_table "payment_methods", force: :cascade do |t|
     t.string "name"
-    t.integer "additional_information_id", null: false
+    t.integer "inn_additional_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["additional_information_id"], name: "index_payment_methods_on_additional_information_id"
+    t.index ["inn_additional_id"], name: "index_payment_methods_on_inn_additional_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -90,9 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_220827) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "additional_informations", "inns"
+  add_foreign_key "inn_additionals", "inns"
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"
-  add_foreign_key "payment_methods", "additional_informations"
+  add_foreign_key "payment_methods", "inn_additionals"
   add_foreign_key "rooms", "inns"
 end

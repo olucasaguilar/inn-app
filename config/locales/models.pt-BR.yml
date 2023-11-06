@@ -7,7 +7,7 @@ pt-BR:
       address:
         one: "Endereço"
         other: "Endereços"
-      additional_information:
+      inn_additional:
         one: "Informações Adicionais"
         other: "Informações Adicionais"
       payment_method:
@@ -35,7 +35,7 @@ pt-BR:
         state: "Estado"
         city: "Cidade"
         zip_code: "CEP"
-      additional_information:
+      inn_additional:
         description: "Descrição"
         policies: "Políticas"
         check_in: "Check-in"
@@ -45,8 +45,8 @@ pt-BR:
         inn_id: "Pousada"
       payment_method:
         name: "Nome"
-        additional_information: "Informações adicionais"
-        additional_information_id: "Informações adicionais"
+        inn_additional: "Informações adicionais"
+        inn_additional_id: "Informações adicionais"
       user:
         name: "Nome"
         innkeeper: "Dono de pousada"

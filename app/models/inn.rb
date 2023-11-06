@@ -1,9 +1,9 @@
 class Inn < ApplicationRecord
-  after_create :create_additional_information
+  after_create :create_inn_additional
 
   belongs_to :address
   belongs_to :user
-  has_one :additional_information
+  has_one :inn_additional
   has_many :rooms
 
   validates :name, :social_name, :cnpj, :phone, :email, presence: true
@@ -17,9 +17,9 @@ class Inn < ApplicationRecord
 
   private
 
-  def create_additional_information
-    AdditionalInformation.create!(inn: self, check_in: '12:00', 
-                                             check_out: '12:00') if self.additional_information.nil?
+  def create_inn_additional
+    InnAdditional.create!(inn: self, check_in: '12:00', 
+                          check_out: '12:00') if self.inn_additional.nil?
   end
 
   def set_defaults

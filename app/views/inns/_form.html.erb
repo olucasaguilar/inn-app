@@ -54,7 +54,7 @@
   </div>
 
   <% if current_user.inn.nil? %>
-    <%= fields_for @additional_information do |pm| %>
+    <%= fields_for @inn_additional do |pm| %>
       <div>
         <%= pm.label :check_in %>
         <%= pm.time_field :check_in %>

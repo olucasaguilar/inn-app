@@ -21,19 +21,19 @@
 
 <dl>
   <dt><strong>Informações adicionais:</strong></dt>
-  <dd><strong>Descrição:</strong> <%= @inn.additional_information.description.presence || 'Sem Descrição' %></dd>
-  <dd><strong>Políticas:</strong> <%= @inn.additional_information.policies.presence || 'Sem Políticas' %></dd>
-  <dd><strong>Check-in:</strong> <%= @inn.additional_information.check_in.strftime('%H:%M') %></dd>
-  <dd><strong>Check-out:</strong> <%= @inn.additional_information.check_out.strftime('%H:%M') %></dd>
-  <dd><strong>Aceita Pets:</strong> <%= @inn.additional_information.pets ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Descrição:</strong> <%= @inn.inn_additional.description.presence || 'Sem Descrição' %></dd>
+  <dd><strong>Políticas:</strong> <%= @inn.inn_additional.policies.presence || 'Sem Políticas' %></dd>
+  <dd><strong>Check-in:</strong> <%= @inn.inn_additional.check_in.strftime('%H:%M') %></dd>
+  <dd><strong>Check-out:</strong> <%= @inn.inn_additional.check_out.strftime('%H:%M') %></dd>
+  <dd><strong>Aceita Pets:</strong> <%= @inn.inn_additional.pets ? 'Sim' : 'Não' %></dd>
 </dl>
 
-<%= link_to 'Editar Informações Adicionais', edit_additional_information_path(@inn.additional_information) %>
+<%= link_to 'Editar Informações Adicionais', edit_inn_additional_path(@inn.inn_additional) %>
 
 <dl id="payment_methods">
   <dt><strong>Formas de pagamento:</strong></dt>
-  <% if @inn.additional_information.payment_methods.any? %>
-    <% @inn.additional_information.payment_methods.each do |payment_method| %>
+  <% if @inn.inn_additional.payment_methods.any? %>
+    <% @inn.inn_additional.payment_methods.each do |payment_method| %>
       <dd><%= payment_method.name %> | <%= link_to 'Editar', edit_payment_method_path(payment_method) %><dd>      
     <% end %>
   <% else %>

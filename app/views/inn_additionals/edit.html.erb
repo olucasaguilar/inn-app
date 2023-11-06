@@ -1,15 +1,15 @@
 <h1>Editar Informações Adicionais</h1>
 
-<% if @additional_information.errors.any? %>
+<% if @inn_additional.errors.any? %>
   <p>Verifique os erros abaixo:</p>
   <ul>
-    <% @additional_information.errors.full_messages.each do |msg| %>
+    <% @inn_additional.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>  
   </ul>
 <% end %>
 
-<%= form_with model: @additional_information do |ai| %>
+<%= form_with model: @inn_additional do |ai| %>
   <div>
     <%= ai.label :description %>
     <%= ai.text_area :description %>
