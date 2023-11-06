@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
 
     scope 'room/:room_id' do
-      resources :price_periods, only: [:index, :new, :create, :edit, :update]
+      resources :price_periods, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 
     resources :payment_methods, only: [:new, :create, :edit, :update, :destroy]

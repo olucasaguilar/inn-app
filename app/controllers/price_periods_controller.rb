@@ -1,6 +1,6 @@
 class PricePeriodsController < ApplicationController
   before_action :set_room, only: [:index, :new, :create]
-  before_action :set_price_period, only: [:edit, :update]
+  before_action :set_price_period, only: [:edit, :update, :destroy]
 
   def index; end
 
@@ -30,6 +30,12 @@ class PricePeriodsController < ApplicationController
       flash.now[:alert] = 'Preço por período não atualizado'
       render :edit, status: 422
     end
+  end
+
+  def destroy
+    @price_period.destroy
+    flash[:notice] = 'Preço por período apagado com sucesso'
+    redirect_to price_periods_path(@price_period.room)
   end
 
   private
