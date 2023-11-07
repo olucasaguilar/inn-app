@@ -45,4 +45,22 @@ describe 'Guest gets blocked' do
     # Assert
     expect(current_path).to eq root_path    
   end
+
+  it 'trying to access price_periods_path' do
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: false)
+    # Act
+    login_as(user)
+    visit price_periods_path(1)
+    # Assert
+    expect(current_path).to eq root_path    
+  end
+
+  it 'trying to access price_periods_path' do
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: false)
+    # Act
+    login_as(user)
+    visit price_periods_path(1)
+    # Assert
+    expect(current_path).to eq root_path    
+  end
 end

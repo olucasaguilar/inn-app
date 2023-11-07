@@ -1,13 +1,9 @@
 class RoomsController < ApplicationController
   before_action :block_guests
   before_action :force_inn_creation
+  before_action :set_room, only: [:show, :edit, :update, :change_status]
 
-  def show
-    @room = Room.find(params[:id])
-    if @room.inn.user != current_user
-      redirect_to my_inn_path
-    end
-  end
+  def show; end
 
   def new
     @room = Room.new
@@ -26,16 +22,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  def edit
-    @room = Room.find(params[:id])
-    if @room.inn.user != current_user
-      redirect_to my_inn_path
-    end
-  end
+  def edit; end
 
   def update
-    @room = Room.find(params[:id])
-
     if @room.update(room_params)
       flash[:notice] = "#{@room.name} atualizado com sucesso"
       redirect_to room_path(@room)
@@ -46,7 +35,6 @@ class RoomsController < ApplicationController
   end
 
   def change_status
-    @room = Room.find(params[:room_id])
     @room.status? ? @room.status = false : @room.status = true
     @room.save
     flash[:notice] = 'Disponibilidade atualizada com sucesso'
@@ -58,5 +46,12 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:name, :description, :dimension, :max_occupancy, :value,
                                   :bathroom, :balcony, :air_conditioning, :tv, :wardrobe, :safe, :accessible)
+  end
+
+  def set_room
+    @room = Room.find(params[:id] || params[:room_id])
+    if @room.inn.user != current_user
+      redirect_to my_inn_path
+    end
   end
 end

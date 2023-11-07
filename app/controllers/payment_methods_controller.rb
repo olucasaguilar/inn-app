@@ -19,12 +19,7 @@ class PaymentMethodsController < ApplicationController
     end
   end
 
-  def edit
-    user_related_to_this_payment_method = @payment_method.inn_additional.inn.user
-    if user_related_to_this_payment_method != current_user
-      redirect_to my_inn_path
-    end
-  end
+  def edit; end
 
   def update
     if @payment_method.update(payment_method_params)
@@ -51,5 +46,9 @@ class PaymentMethodsController < ApplicationController
 
   def set_payment_method
     @payment_method = PaymentMethod.find(params[:id])
+    user_related_to_this_payment_method = @payment_method.inn_additional.inn.user
+    if user_related_to_this_payment_method != current_user
+      redirect_to my_inn_path
+    end
   end
 end

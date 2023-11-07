@@ -1,5 +1,7 @@
 class PricePeriodsController < ApplicationController
-  before_action :set_room, only: [:index, :new, :create]
+  before_action :block_guests
+  before_action :force_inn_creation
+  before_action :set_room,         only: [:index, :new, :create]
   before_action :set_price_period, only: [:edit, :update, :destroy]
 
   def index; end
@@ -50,5 +52,8 @@ class PricePeriodsController < ApplicationController
 
   def set_price_period
     @price_period = PricePeriod.find(params[:id])
+    if @price_period.room.inn.user != current_user
+      redirect_to my_inn_path
+    end
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get       '/',                    to: 'inns#my_inn',            as: 'my_inn'
     patch     '/status',              to: 'inns#change_status',     as: 'status_inn'
     get       '/edit',                to: 'inns#edit',              as: 'edit_inn'
-    get       '/aditional/edit/:id',  to: 'inn_additionals#edit',   as: 'edit_inn_additional'
+    get       '/aditional/:id/edit',  to: 'inn_additionals#edit',   as: 'edit_inn_additional'
     patch     '/aditional/:id',       to: 'inn_additionals#update', as: 'inn_additional'
     
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
 
     scope 'room/:room_id' do
-      resources :price_periods, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :price_periods, only: [:index, :new, :create, :update, :destroy, :edit]
     end
 
     resources :payment_methods, only: [:new, :create, :edit, :update, :destroy]

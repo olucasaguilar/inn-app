@@ -1,23 +1,22 @@
 <h1>Preços por período</h1>
 <h2><%= @room.name %></h2>
 
-<%= link_to 'Cadastrar novo preço', new_price_period_path(@room) %>
+<div>
+  <%= link_to 'Cadastrar novo preço', new_price_period_path(@room) %>
+</div><br >
+
+<% @room.price_periods.each do |price_period| %>
+  <div id="price_period_<%= price_period.id %>">
+    <strong>Período:</strong> <%= link_to price_period_display(price_period), edit_price_period_path(@room, price_period) %><br>
+    <strong>Valor:</strong> <%= number_to_currency(price_period.value) %><br>
+    <%= delete_button(@room, price_period) %><br>
+  </div>
+<% end %>
+
+<% if @room.price_periods.empty? %>
+  <p>Nenhum preço cadastrado.</p>
+<% end %>
 
 <div>
-  <% @room.price_periods.each do |price_period| %>
-    <div id="price_period_<%= price_period.id %>">
-      <p>
-        <% price_period_string = price_period.start_date.strftime("%d/%m/%Y") + " a " + price_period.end_date.strftime("%d/%m/%Y") %>
-        <%= link_to price_period_string, edit_price_period_path(@room, price_period) %> - 
-        <%= number_to_currency(price_period.value) %>
-        <%= button_to "Apagar", price_period_path(@room, price_period), method: :delete, form: { data: { turbo_confirm: 'Tem certeza?' } } %><br >
-      </p>
-    </div>
-  <% end %>
-
-  <% if @room.price_periods.empty? %>
-    <p>Nenhum preço cadastrado</p>
-  <% end %>
+  <%= link_to 'Voltar', room_path(@room) %>
 </div>
-
-<%= link_to 'Voltar', room_path(@room) %>
