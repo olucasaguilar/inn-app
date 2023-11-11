@@ -1,9 +1,9 @@
 class InnsController < ApplicationController
   before_action :set_my_inn,                only: [:my_inn, :edit, :update, :change_status]
   before_action :redirect_inn_keeper_out,   only: [:new]
-  before_action :block_guests,              except: [:show]
-  before_action :force_inn_creation,        only: [:edit, :my_inn]
-  before_action :authenticate_user!,        except: [:show]
+  before_action :block_guests,              except: [:show, :search_by_city]
+  before_action :authenticate_user!,        except: [:show, :search_by_city]
+  before_action :force_inn_creation,        only: [:edit, :my_inn, :show, :search_by_city]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -57,6 +57,11 @@ class InnsController < ApplicationController
     @inn.active? ? @inn.inactive! : @inn.active!
     flash[:notice] = 'Status atualizado com sucesso'
     redirect_to my_inn_path
+  end
+
+  def search_by_city
+    @city = params[:format]
+    @inns = Inn.where(address: Address.where(city: @city), status: :active).order(name: :asc)
   end
 
   private

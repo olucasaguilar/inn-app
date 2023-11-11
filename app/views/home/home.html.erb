@@ -1,5 +1,11 @@
 <h1>Lista de Pousadas</h1>
 
+<div id="cities">
+  <% @cities.each do |city| %>
+    <%= link_to city, search_by_city_inns_path(city) %> |
+  <% end %>
+<div>
+
 <div id="recent-inns">
   <h2>Recentes</h2>
   <% @recent_inns.each do |inn| %>

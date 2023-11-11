@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#home'
 
-  resources :inns, only: [:new, :create, :update, :show]
+  resources :inns, only: [:new, :create, :update, :show] do
+    get 'search_by_city', on: :collection
+  end
   
   scope 'my_inn/' do
     get       '/',                    to: 'inns#my_inn',            as: 'my_inn'
