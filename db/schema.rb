@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_06_015034) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_11_224138) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_015034) do
     t.text "policies"
     t.time "check_in"
     t.time "check_out"
-    t.boolean "pets"
+    t.boolean "pets", default: false
     t.integer "inn_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,14 +75,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_015034) do
     t.integer "inn_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "bathroom"
-    t.boolean "balcony"
-    t.boolean "air_conditioning"
-    t.boolean "tv"
-    t.boolean "wardrobe"
-    t.boolean "safe"
-    t.boolean "accessible"
-    t.boolean "status"
+    t.boolean "bathroom", default: false
+    t.boolean "balcony", default: false
+    t.boolean "air_conditioning", default: false
+    t.boolean "tv", default: false
+    t.boolean "wardrobe", default: false
+    t.boolean "safe", default: false
+    t.boolean "accessible", default: false
+    t.boolean "status", default: false
     t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 

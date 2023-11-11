@@ -22,6 +22,8 @@
           <%= f.submit 'Buscar' %>
         <% end %>
 
+        <%= link_to 'Busca Avançada', advanced_search_inns_path %> |
+
         <% unless user_signed_in? %>
           <%= link_to 'Entrar', new_user_session_path %> |
         <% else %>

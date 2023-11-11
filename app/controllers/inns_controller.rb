@@ -70,6 +70,7 @@ class InnsController < ApplicationController
     @inns += Inn.where(address: Address.where("neighborhood LIKE ?", "%#{@query}%"), status: :active)
     @inns += Inn.where("name LIKE ?", "%#{@query}%").where(status: :active)
     @inns = @inns.sort_by { |inn| inn.name }
+    @inns.uniq!
   end
 
   private

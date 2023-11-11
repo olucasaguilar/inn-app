@@ -39,7 +39,7 @@ describe 'Visitor search inn' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content "Resultados da Busca por: 'Paulo'"
+    expect(page).to have_content "Resultados da busca por: 'Paulo'"
     expect(page).to have_content '2 pousadas encontradas'
     expect(page).to have_link 'Pousada do Alemão'
     expect(page).to have_link 'Pousada do Russo'
@@ -65,7 +65,7 @@ describe 'Visitor search inn' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content "Resultados da Busca por: 'São Paulo'"
+    expect(page).to have_content "Resultados da busca por: 'São Paulo'"
     expect(page).to have_content '1 pousada encontrada'
     expect(page).to have_link 'Pousada do Alemão'
     expect(page).not_to have_link 'Pousada do Russo'
@@ -90,7 +90,7 @@ describe 'Visitor search inn' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content "Resultados da Busca por: 'Alemão'"
+    expect(page).to have_content "Resultados da busca por: 'Alemão'"
     expect(page).to have_content '1 pousada encontrada'
     expect(page).to have_link 'Pousada do Alemão'
     expect(page).not_to have_link 'Pousada do Russo'
@@ -115,7 +115,7 @@ describe 'Visitor search inn' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content "Resultados da Busca por: 'Madarena'"
+    expect(page).to have_content "Resultados da busca por: 'Madarena'"
     expect(page).to have_content '1 pousada encontrada'
     expect(page).to have_link 'Pousada do Russo'
     expect(page).not_to have_link 'Pousada do Alemão'
@@ -145,7 +145,7 @@ describe 'Visitor search inn' do
     click_on 'Buscar'
   
     # Assert
-    expect(page).to have_content "Resultados da Busca por: 'Alemão'"
+    expect(page).to have_content "Resultados da busca por: 'Alemão'"
     expect(page).to have_content '3 pousadas encontradas'
     expect(page).to have_link 'Pousada Alemão'
     expect(page).to have_link 'Pousada do Russo'

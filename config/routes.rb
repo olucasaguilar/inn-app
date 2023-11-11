@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :inns, only: [:new, :create, :update, :show] do
     get 'city', on: :collection
     get 'search', on: :collection
-  end  
+  end
+
+  scope 'inns/search' do
+    get 'advanced',            to: 'advanced_searches#search',     as: 'advanced_search_inns'
+    get 'advanced/results',    to: 'advanced_searches#results',    as: 'advanced_search_inns_results'
+  end
   
   scope 'my_inn/' do
     get       '/',                    to: 'inns#my_inn',            as: 'my_inn'

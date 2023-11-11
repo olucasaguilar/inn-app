@@ -1,12 +1,17 @@
 <h1>Lista de Pousadas</h1>
 
-<h2>Resultados da busca por: '<%= @query %>'</h2>
+<h2>Resultado da busca avançada</h2>
 
 <h3><%= @inns.count %> <%= Inn.model_name.human(count: @inns.count).downcase %> <%= t(:found, count: @inns.count) %></h3>
 
 <div id="inns">
   <% @inns.each do |inn| %>
-    <%= render inn %>
+    <dl>
+      <dt><strong>Nome:</strong></dd>
+      <dd><%= link_to inn.name, inn %></dd>
+      <dt><strong>Cidade:</strong></dd>
+      <dd><%= inn.address.city %></dd>
+    <dl>
   <% end %>
 
   <% if @inns.empty? %>
