@@ -56,7 +56,7 @@ describe 'Inn keeper gets blocked' do
     expect(current_path).to eq my_inn_path
   end
 
-  it 'trying to edit someone else\'s room' do
+  it 'trying to edit someone else\'s price period' do
     user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')

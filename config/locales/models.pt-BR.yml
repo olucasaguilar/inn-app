@@ -32,6 +32,7 @@ pt-BR:
         address: "Endereço"
         address_id: "Endereço"
         status: "Status"
+        user: "Usuário"
       address:
         street: "Rua"
         neighborhood: "Bairro"

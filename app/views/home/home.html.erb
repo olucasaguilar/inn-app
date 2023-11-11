@@ -1,21 +1,26 @@
-<% unless @inns.nil? %>
-  <h2>Lista de Pousadas</h2>
-  
+<h1>Lista de Pousadas</h1>
+
+<div id="recent-inns">
+  <h2>Recentes</h2>
+  <% @recent_inns.each do |inn| %>
+    <dl>
+      <dt><strong>Nome:</strong></dd>
+      <dd><%= link_to inn.name, inn %></dd>
+      <dt><strong>Cidade:</strong></dd>
+      <dd><%= inn.address.city %></dd>
+    <dl>
+  <% end %>
+</div>
+
+<hr>
+
+<div id="inns">
   <% @inns.each do |inn| %>
     <dl>
-      <dt><strong>Nome: <%= inn.name %></strong></dt>
-      <dd><strong>Dono:</strong>  <%= inn.user.name %></dd>
-      <dd><strong>Cidade:</strong> <%= inn.address.city %> - <%= inn.address.state %></dd>
-      <dd><strong>E-mail:</strong> <%= inn.email %></dd>
-      <dd>
-        <% inn.rooms.where(status: true).each do |room| %>
-          <dl>
-            <dt><strong>Quartos</strong></dt>
-            <dd><strong>Nome: <%= room.name %></strong></dd>
-            <dd><strong>Descrição:</strong> <%= room.description %></dd>
-          </dl><hr >
-        <% end %>
-      </dd>
-    </dl><hr >
+      <dt><strong>Nome:</strong></dd>
+      <dd><%= link_to inn.name, inn %></dd>
+      <dt><strong>Cidade:</strong></dd>
+      <dd><%= inn.address.city %></dd>
+    <dl>
   <% end %>
-<% end %>
+</div>
