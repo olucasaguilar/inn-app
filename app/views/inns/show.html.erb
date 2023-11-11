@@ -1,0 +1,36 @@
+
+<h1>Detalhes da Pousada</h1>
+
+<dl>
+  <dt><strong>Nome: <%= @inn.name %></strong></dt>
+  <dd><strong>Telefone:</strong> <%= @inn.phone %></dd>
+  <dd><strong>E-mail:</strong> <%= @inn.email %></dd>  
+</dl>
+
+<dl>
+  <dt><strong>Endereço:</strong></dt>
+  <dd><strong>Rua:</strong> <%= @inn.address.street %></dd>
+  <dd><strong>Bairro:</strong> <%= @inn.address.neighborhood %></dd>
+  <dd><strong>Cidade:</strong> <%= @inn.address.city %> - <%= @inn.address.state %></dd>
+  <dd><strong>CEP:</strong> <%= @inn.address.zip_code %></dd>
+</dl>
+
+<dl>
+  <dt><strong>Informações adicionais:</strong></dt>
+  <dd><strong>Descrição:</strong> <%= @inn.inn_additional.description.presence || 'Sem Descrição' %></dd>
+  <dd><strong>Políticas:</strong> <%= @inn.inn_additional.policies.presence || 'Sem Políticas' %></dd>
+  <dd><strong>Check-in:</strong> <%= @inn.inn_additional.check_in.strftime('%H:%M') %></dd>
+  <dd><strong>Check-out:</strong> <%= @inn.inn_additional.check_out.strftime('%H:%M') %></dd>
+  <dd><strong>Aceita Pets:</strong> <%= @inn.inn_additional.pets ? 'Sim' : 'Não' %></dd>
+</dl>
+
+<dl id="payment_methods">
+  <dt><strong>Formas de pagamento:</strong></dt>
+  <% if @inn.inn_additional.payment_methods.any? %>
+    <% @inn.inn_additional.payment_methods.each do |payment_method| %>
+      <dd><%= payment_method.name %><dd>      
+    <% end %>
+  <% else %>
+    <dd>Nenhuma forma de pagamento cadastrada</></dd>
+  <% end %>
+</dl>

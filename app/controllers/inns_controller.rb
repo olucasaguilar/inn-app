@@ -1,12 +1,18 @@
 class InnsController < ApplicationController
   before_action :set_my_inn,                only: [:my_inn, :edit, :update, :change_status]
   before_action :redirect_inn_keeper_out,   only: [:new]
-  before_action :block_guests
+  before_action :block_guests,              except: [:show]
   before_action :force_inn_creation,        only: [:edit, :my_inn]
+  before_action :authenticate_user!,        except: [:show]
 
   def new
     @inn = Inn.new(address: Address.new)
     @inn_additional = InnAdditional.new(inn: @inn)
+  end
+
+  def show
+    @inn = Inn.find(params[:id])
+    return redirect_to root_path unless @inn.active?
   end
 
   def create
