@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#home'
 
   resources :inns, only: [:new, :create, :update, :show] do
-    get 'search_by_city', on: :collection
-  end
+    get 'city', on: :collection
+    get 'search', on: :collection
+  end  
   
   scope 'my_inn/' do
     get       '/',                    to: 'inns#my_inn',            as: 'my_inn'

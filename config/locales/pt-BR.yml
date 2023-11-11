@@ -1,0 +1,5 @@
+pt-BR:
+  found:
+    one: "encontrada"
+    other: "encontradas"
+  no_results: 'Nenhum resultado encontrado'

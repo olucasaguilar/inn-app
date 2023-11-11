@@ -87,4 +87,15 @@ describe 'Inn keeper register inn' do
       expect(Inn.count).to eq 0
     end
   end
+
+  it 'and before can\'t access root_path' do
+    # Arrange
+    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    # Act
+    login_as(user)
+    visit root_path
+    # Assert
+    expect(current_path).to eq new_inn_path
+    expect(page).to have_field 'Nome fantasia'
+  end
 end

@@ -10,7 +10,7 @@ describe 'User authenticate' do
     within 'h2' do
       expect(page).to have_content 'Entrar'
     end
-    within 'form' do
+    within 'form#new_user' do
       fill_in 'E-mail', with: 'lucas@gmail.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
@@ -31,7 +31,7 @@ describe 'User authenticate' do
     # Act
     visit root_path
     click_on 'Entrar'
-    within 'form' do
+    within 'form#new_user' do
       fill_in 'E-mail', with: 'lucas@gmail.com'
       fill_in 'Senha', with: ''
       click_on 'Entrar'
@@ -47,7 +47,7 @@ describe 'User authenticate' do
     # Act
     visit root_path
     click_on 'Entrar'
-    within 'form' do
+    within 'form#new_user' do
       fill_in 'E-mail', with: 'lucas@gmail.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'

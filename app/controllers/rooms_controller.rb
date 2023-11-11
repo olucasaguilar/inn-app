@@ -1,6 +1,4 @@
 class RoomsController < ApplicationController
-  before_action :block_guests
-  before_action :force_inn_creation
   before_action :set_room, only: [:show, :edit, :update, :change_status]
 
   def show; end

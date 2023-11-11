@@ -1,0 +1,9 @@
+<h1>Lista de Pousadas</h1>
+
+<h2>Pousadas em <%= @city %></h2>
+
+<div id="inns">
+  <% @inns.each do |inn| %>
+    <%= render inn %>
+  <% end %>
+</div>

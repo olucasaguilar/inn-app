@@ -1,6 +1,4 @@
 class PaymentMethodsController < ApplicationController
-  before_action :block_guests
-  before_action :force_inn_creation
   before_action :set_payment_method, only: [:edit, :update, :destroy]
   
   def new

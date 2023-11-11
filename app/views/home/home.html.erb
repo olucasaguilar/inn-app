@@ -2,7 +2,7 @@
 
 <div id="cities">
   <% @cities.each do |city| %>
-    <%= link_to city, search_by_city_inns_path(city) %> |
+    <%= link_to city, city_inns_path(city) %> |
   <% end %>
 <div>
 

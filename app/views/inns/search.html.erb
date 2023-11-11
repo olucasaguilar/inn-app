@@ -1,0 +1,15 @@
+<h1>Lista de Pousadas</h1>
+
+<h2>Resultados da Busca por: '<%= @query %>'</h2>
+
+<h3><%= @inns.count %> <%= Inn.model_name.human(count: @inns.count).downcase %> <%= t(:found, count: @inns.count) %></h3>
+
+<div id="inns">
+  <% @inns.each do |inn| %>
+    <%= render inn %>
+  <% end %>
+
+  <% if @inns.empty? %>
+    <p><%= t(:no_results) %></p>
+  <% end %>
+</div>

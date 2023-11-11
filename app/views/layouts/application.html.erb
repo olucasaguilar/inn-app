@@ -15,6 +15,13 @@
       <h1>Pousadaria</h1>
       <nav>
         <%= link_to 'Tela inicial', root_path %> |
+
+        <%= form_with(url: search_inns_path, method: :get) do |f| %>
+          <%= f.label :query, 'Buscar Pousadas' %>
+          <%= f.text_field :query %>
+          <%= f.submit 'Buscar' %>
+        <% end %>
+
         <% unless user_signed_in? %>
           <%= link_to 'Entrar', new_user_session_path %> |
         <% else %>

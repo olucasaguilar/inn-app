@@ -1,6 +1,4 @@
 class InnAdditionalsController < ApplicationController
-  before_action :block_guests
-  before_action :force_inn_creation, only: [:edit]
   before_action :set_inn_additional, only: [:edit, :update]
 
   def edit; end

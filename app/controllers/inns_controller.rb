@@ -1,9 +1,9 @@
 class InnsController < ApplicationController
   before_action :set_my_inn,                only: [:my_inn, :edit, :update, :change_status]
   before_action :redirect_inn_keeper_out,   only: [:new]
-  before_action :block_guests,              except: [:show, :search_by_city]
-  before_action :authenticate_user!,        except: [:show, :search_by_city]
-  before_action :force_inn_creation,        only: [:edit, :my_inn, :show, :search_by_city]
+  before_action :block_guests,              except: [:show, :city, :search]
+  before_action :authenticate_user!,        except: [:show, :city, :search]
+  before_action :force_inn_creation,        except: [:new, :create]
 
   def new
     @inn = Inn.new(address: Address.new)
@@ -59,9 +59,17 @@ class InnsController < ApplicationController
     redirect_to my_inn_path
   end
 
-  def search_by_city
+  def city
     @city = params[:format]
     @inns = Inn.where(address: Address.where(city: @city), status: :active).order(name: :asc)
+  end
+
+  def search
+    @query = params[:query]
+    @inns = Inn.where(address: Address.where("city LIKE ?", "%#{@query}%"), status: :active)
+    @inns += Inn.where(address: Address.where("neighborhood LIKE ?", "%#{@query}%"), status: :active)
+    @inns += Inn.where("name LIKE ?", "%#{@query}%").where(status: :active)
+    @inns = @inns.sort_by { |inn| inn.name }
   end
 
   private
