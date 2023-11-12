@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
   end
 
   def change_status
-    @room.status? ? @room.status = false : @room.status = true
+    @room.active? ? @room.inactive! : @room.active!
     @room.save
     flash[:notice] = 'Disponibilidade atualizada com sucesso'
     redirect_to room_path(@room)

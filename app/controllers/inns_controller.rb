@@ -12,7 +12,7 @@ class InnsController < ApplicationController
 
   def show
     @inn = Inn.find(params[:id])
-    return redirect_to root_path unless @inn.active?
+    return redirect_to root_path if @inn.inactive?
   end
 
   def create
@@ -61,15 +61,16 @@ class InnsController < ApplicationController
 
   def city
     @city = params[:format]
-    @inns = Inn.where(address: Address.where(city: @city), status: :active).order(name: :asc)
+    @inns = Inn.active.where(address: Address.where(city: @city)).order(name: :asc)    
   end
 
   def search
     @query = params[:query]
-    @inns = Inn.where(address: Address.where("city LIKE ?", "%#{@query}%"), status: :active)
-    @inns += Inn.where(address: Address.where("neighborhood LIKE ?", "%#{@query}%"), status: :active)
-    @inns += Inn.where("name LIKE ?", "%#{@query}%").where(status: :active)
-    @inns = @inns.sort_by { |inn| inn.name }
+    @inns  = Inn.active.where(address: Address.where("city LIKE ?", "%#{@query}%"))
+    @inns += Inn.active.where(address: Address.where("neighborhood LIKE ?", "%#{@query}%"))
+    @inns += Inn.active.where("name LIKE ?", "%#{@query}%")
+    @inns  = @inns.sort_by { |inn| inn.name }
+
     @inns.uniq!
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_11_224138) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_12_001621) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_224138) do
     t.boolean "wardrobe", default: false
     t.boolean "safe", default: false
     t.boolean "accessible", default: false
-    t.boolean "status", default: false
+    t.integer "status"
     t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 

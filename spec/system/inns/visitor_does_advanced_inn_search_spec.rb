@@ -32,6 +32,21 @@ describe 'Visitor does advanced inn search' do
     expect(page).to have_field 'Acessibilidade'
   end
 
+  it 'and the form filled options remain' do
+    # Arrange
+
+    # Act
+    visit root_path
+    click_on 'Busca Avançada'
+    check 'Banheiro'
+    within 'div#advanced_search' do
+      click_on 'Buscar'
+    end
+
+    # Assert
+    expect(page).to have_field 'Banheiro', checked: true
+  end
+
   it 'and finds one result' do
     # Arrange
     first_innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
@@ -41,7 +56,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                             address: first_address, user: first_innkeeper, status: :active)
     first_room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                              max_occupancy: 2, value: 200, inn: first_inn, bathroom: true, status: true)
+                              max_occupancy: 2, value: 200, inn: first_inn, bathroom: true, status: :active)
     
     second_innkeeper = User.create!(name: 'Pedro', email: 'pedro@gmail.com', password: '123456', innkeeper: true)
     second_address = Address.new(street: 'Rua dos Tolos, 115', neighborhood: 'Vila Madarena', 
@@ -50,7 +65,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '3123123123123123', phone: '22222222222', email: 'pdalemao@gmail.com', 
                             address: second_address, user: second_innkeeper, status: :active)
     second_room = Room.create!(name: 'Quarto Luxo', description: 'Quarto luxuoso com jacuzzi', dimension: 25,
-                              max_occupancy: 2, value: 400, inn: second_inn, bathroom: true, status: false)
+                              max_occupancy: 2, value: 400, inn: second_inn, bathroom: true, status: :inactive)
     # Act
     visit root_path
     click_on 'Busca Avançada'
@@ -75,7 +90,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                             address: first_address, user: first_innkeeper, status: :active)
     first_room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                              max_occupancy: 2, value: 200, inn: first_inn, wardrobe: true, tv: true, status: true)
+                              max_occupancy: 2, value: 200, inn: first_inn, wardrobe: true, tv: true, status: :active)
     
     second_innkeeper = User.create!(name: 'Pedro', email: 'pedro@gmail.com', password: '123456', innkeeper: true)
     second_address = Address.new(street: 'Rua dos Tolos, 115', neighborhood: 'Vila Madarena', 
@@ -84,7 +99,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '3123123123123123', phone: '22222222222', email: 'pdalemao@gmail.com', 
                             address: second_address, user: second_innkeeper, status: :active)
     second_room = Room.create!(name: 'Quarto Luxo', description: 'Quarto luxuoso com jacuzzi', dimension: 25,
-                              max_occupancy: 2, value: 400, inn: second_inn, wardrobe: true, tv: false, status: true)
+                              max_occupancy: 2, value: 400, inn: second_inn, wardrobe: true, tv: false, status: :active)
 
     third_innkeeper = User.create!(name: 'Rafael', email: 'rafael@gmail.com', password: '123456', innkeeper: true)
     third_address = Address.new(street: 'Rua Benjamin, 115', neighborhood: 'Vila Rafa', 
@@ -93,7 +108,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '3123123123123123', phone: '22222222222', email: 'pdalemao@gmail.com', 
                             address: third_address, user: third_innkeeper, status: :active)
     third_room = Room.create!(name: 'Quarto Roxo', description: 'Quarto roxoso', dimension: 25,
-                              max_occupancy: 2, value: 400, inn: third_inn,  wardrobe: true, tv: true, status: true)
+                              max_occupancy: 2, value: 400, inn: third_inn,  wardrobe: true, tv: true, status: :active)
     # Act
     visit root_path
     click_on 'Busca Avançada'
@@ -120,7 +135,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                             address: first_address, user: first_innkeeper, status: :active)
     first_room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                              max_occupancy: 2, value: 200, inn: first_inn, bathroom: true, status: true)
+                              max_occupancy: 2, value: 200, inn: first_inn, bathroom: true, status: :active)
     
     second_innkeeper = User.create!(name: 'Pedro', email: 'pedro@gmail.com', password: '123456', innkeeper: true)
     second_address = Address.new(street: 'Rua dos Tolos, 115', neighborhood: 'Vila Madarena', 
@@ -129,7 +144,7 @@ describe 'Visitor does advanced inn search' do
                             cnpj: '3123123123123123', phone: '22222222222', email: 'pdalemao@gmail.com', 
                             address: second_address, user: second_innkeeper, status: :active)
     second_room = Room.create!(name: 'Quarto Luxo', description: 'Quarto luxuoso com jacuzzi', dimension: 25,
-                              max_occupancy: 2, value: 400, inn: second_inn, bathroom: true, status: true)
+                              max_occupancy: 2, value: 400, inn: second_inn, bathroom: true, status: :active)
     # Act
     visit root_path
     click_on 'Busca Avançada'

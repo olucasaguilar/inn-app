@@ -1,6 +1,6 @@
-<h1>Lista de Pousadas</h1>
+<%= render 'form' %>
 
-<h2>Resultado da busca avançada</h2>
+<h3>Resultado da busca avançada</h3>
 
 <h3><%= @inns.count %> <%= Inn.model_name.human(count: @inns.count).downcase %> <%= t(:found, count: @inns.count) %></h3>
 
