@@ -34,3 +34,29 @@
     <dd>Nenhuma forma de pagamento cadastrada</></dd>
   <% end %>
 </dl>
+
+<hr>
+
+<h3>Quartos</h3>
+
+<dl>
+  <% if @inn.rooms.active.any? %>
+    <% @inn.rooms.active.each do |room| %>
+      <dt><strong><%= room.name %></strong></dd>
+        <dd><strong>Descrição:</strong> <%= room.description %></dd>
+        <dd><strong>Dimensão:</strong> <%= room.dimension %> m²</dd>
+        <dd><strong>Ocupação máxima:</strong> <%= room.max_occupancy %> pessoas</dd>
+        <dd><strong>Valor da diária:</strong> <%= number_to_currency(room.value) %></dd><br >
+
+        <dd><strong>Banheiro:</strong> <%= room.bathroom ? 'Sim' : 'Não' %></dd>
+        <dd><strong>Sacada:</strong> <%= room.balcony ? 'Sim' : 'Não' %></dd>
+        <dd><strong>Ar condicionado:</strong> <%= room.air_conditioning ? 'Sim' : 'Não' %></dd>
+        <dd><strong>TV:</strong> <%= room.tv ? 'Sim' : 'Não' %></dd>
+        <dd><strong>Guarda-roupa:</strong> <%= room.wardrobe ? 'Sim' : 'Não' %></dd>
+        <dd><strong>Cofre:</strong> <%= room.safe ? 'Sim' : 'Não' %></dd>
+        <dd><strong>Acessibilidade:</strong> <%= room.accessible ? 'Sim' : 'Não' %></dd><br >
+    <% end %>
+  <% else %>
+    <dt>Nenhum quarto disponível</dt>
+  <% end %>
+</dl>
