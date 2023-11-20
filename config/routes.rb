@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   resources :inns, only: [:new, :create, :update, :show] do
     get 'city', on: :collection
     get 'search', on: :collection
+    
+    resources :rooms, only: [] do
+      resources :reservations, only: [:new, :create] do
+        post 'validate', on: :collection
+      end
+    end
   end
 
   scope 'inns/search' do
