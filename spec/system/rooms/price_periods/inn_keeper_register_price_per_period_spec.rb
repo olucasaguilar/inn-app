@@ -10,7 +10,7 @@ describe 'Inn keeper register a rooms prices per period page' do
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
     room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                        max_occupancy: 2, value: 200, inn: inn)
+                        max_occupancy: 2, value: 20000, inn: inn)
     # Act
     login_as(user)
     visit room_path(room)
@@ -18,7 +18,7 @@ describe 'Inn keeper register a rooms prices per period page' do
     click_on 'Cadastrar novo preço'
     fill_in 'Data de início', with: '01/01/2021'
     fill_in 'Data de término', with: '10/01/2021'
-    fill_in 'Valor', with: '250'
+    fill_in 'Valor', with: '25000'
     click_on 'Criar Preço por Período'
     # Assert
     expect(page).to have_content 'Preço por período cadastrado com sucesso'

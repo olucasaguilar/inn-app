@@ -28,7 +28,7 @@ describe 'Inn keeper view room details' do
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
     room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                        max_occupancy: 2, value: 200, inn: inn)
+                        max_occupancy: 2, value: 20000, inn: inn)
     # Act
     login_as(user)
     visit room_path(room)

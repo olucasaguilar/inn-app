@@ -79,9 +79,9 @@ describe 'Visitor view inn rooms' do
                 cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                 address: address, user: innkeeper, status: :active)
     Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                              max_occupancy: 2, value: 200, inn: innkeeper.inn, status: :inactive)
+                              max_occupancy: 2, value: 20000, inn: innkeeper.inn, status: :inactive)
     Room.create!(name: 'Suite Master', description: 'Suite com vista para o mar e varanda', dimension: 30,
-                               max_occupancy: 3, value: 300, inn: innkeeper.inn, status: :active)
+                               max_occupancy: 3, value: 30000, inn: innkeeper.inn, status: :active)
 
     # Act
     visit root_path

@@ -8,7 +8,7 @@
 <% @room.price_periods.each do |price_period| %>
   <div id="price_period_<%= price_period.id %>">
     <strong>Período:</strong> <%= link_to price_period_display(price_period), edit_price_period_path(@room, price_period) %><br>
-    <strong>Valor:</strong> <%= number_to_currency(price_period.value) %><br>
+    <strong>Valor:</strong> <%= number_currency(price_period.value) %><br>
     <%= delete_button(@room, price_period) %><br>
   </div>
 <% end %>

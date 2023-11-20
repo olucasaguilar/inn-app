@@ -10,8 +10,8 @@ describe 'Inn keeper edit a rooms prices per period page' do
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: user)
     room = Room.create!(name: 'Quarto 1', description: 'Quarto com vista para o mar', dimension: 20,
-                        max_occupancy: 2, value: 200, inn: inn)
-    PricePeriod.create!(start_date: "2015-01-01", end_date: "2015-01-10", value: 100, room: room)
+                        max_occupancy: 2, value: 20000, inn: inn)
+    PricePeriod.create!(start_date: "2015-01-01", end_date: "2015-01-10", value: 10000, room: room)
     # Act
     login_as(user)
     visit room_path(room)
@@ -19,7 +19,7 @@ describe 'Inn keeper edit a rooms prices per period page' do
     click_on '01/01/2015 a 10/01/2015'
     fill_in 'Data de início', with: '15/01/2021'
     fill_in 'Data de término', with: '20/01/2021'
-    fill_in 'Valor', with: '350'
+    fill_in 'Valor', with: '35000'
     click_on 'Atualizar Preço por Período'
     # Assert
     expect(page).to have_content 'Preço por período atualizado com sucesso'
