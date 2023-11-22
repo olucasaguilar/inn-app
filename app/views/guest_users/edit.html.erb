@@ -1,0 +1,23 @@
+<h3>Cadastro de Hóspede</h3>
+
+<h3>Por favor, preencha os dados abaixo para continuar</h3>
+
+<% if current_user.guest_user.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% current_user.guest_user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>  
+  </ul>
+<% end %>
+
+<%= form_with model: current_user.guest_user do |f| %>
+  <div>
+    <%= f.label :cpf, 'CPF' %>
+    <%= f.text_field :cpf %>
+  </div>
+
+  <div>
+    <%= f.submit 'Atualizar Usuário' %>
+  </div>
+<% end %>

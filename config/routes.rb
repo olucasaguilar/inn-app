@@ -35,4 +35,8 @@ Rails.application.routes.draw do
 
     resources :payment_methods, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  scope :users do
+    resources :guest_users, only: [:edit, :update]
+  end
 end

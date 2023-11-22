@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_20_162941) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_22_193739) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -19,6 +19,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_162941) do
     t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "guest_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "cpf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_guest_users_on_user_id"
   end
 
   create_table "inn_additionals", force: :cascade do |t|
@@ -111,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_162941) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "guest_users", "users"
   add_foreign_key "inn_additionals", "inns"
   add_foreign_key "inns", "addresses"
   add_foreign_key "inns", "users"

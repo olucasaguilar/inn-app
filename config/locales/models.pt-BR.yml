@@ -25,6 +25,7 @@ pt-BR:
       reservation:
         one: "Reserva"
         other: "Reservas"
+      guest_user: "Hóspede"
     attributes:
       inn:
         name: "Nome fantasia"
@@ -82,3 +83,5 @@ pt-BR:
         check_in: "Data de entrada"
         check_out: "Data de saída"
         guests: "Quantidade de hóspedes"
+      guest_user:
+        cpf: "CPF"

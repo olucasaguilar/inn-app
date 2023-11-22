@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :force_inn_creation
+  before_action :force_guest_add_personal_info
   before_action :block_guests
 
   protected
@@ -24,5 +25,11 @@ class ApplicationController < ActionController::Base
   def block_guests
     return if params[:controller].include?('devise')
     redirect_to root_path unless current_user.innkeeper?
+  end
+
+  def force_guest_add_personal_info
+    if current_user && !current_user.innkeeper? && current_user.guest_user.cpf.nil?
+      redirect_to edit_guest_user_path(current_user.guest_user)
+    end
   end
 end
