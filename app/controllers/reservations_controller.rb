@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!,    except: [:new, :validate]
-  before_action :block_guests,          except: [:new, :validate]
+  before_action :block_guests,          except: [:new, :validate, :create, :confirm]
 
   def new
     @room = Room.find(params[:room_id])
@@ -12,10 +12,28 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(set_reservation)
     @reservation.room = @room    
     if @reservation.valid?
+      session[:reservation] = @reservation
       set_reservation_total_value(@reservation)
       render :validate, status: 422
     else
       render :new, status: 422
+    end
+  end
+
+  def confirm
+    @reservation = Reservation.new(session[:reservation])
+    set_reservation_total_value(@reservation)
+  end
+
+  def create
+    @reservation = Reservation.new(session[:reservation])
+    @reservation.user = current_user
+    if @reservation.save
+      flash[:alert] = 'Reserva confirmada com sucesso!'
+      redirect_to root_path
+    else
+      flash[:alert] = 'Não foi possível confirmar a reserva'
+      redirect_to new_inn_room_reservation_path(@reservation.room.inn, @reservation.room)
     end
   end
 

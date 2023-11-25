@@ -1,5 +1,22 @@
 <h1>Verificar a disponibilidade do quarto: <%= @room.name %></h3>
 
+<dl>
+  <dt><strong>Detalhes do quarto</strong></dd>
+    <dd><strong>Descrição:              </strong> <%= @room.description %></dd>
+    <dd><strong>Dimensão:               </strong> <%= @room.dimension %> m²</dd>
+    <dd><strong>Ocupação máxima:        </strong> <%= @room.max_occupancy %> pessoas</dd>
+    <dd><strong>Valor da diária:        </strong> <%= number_currency(@room.value) %></dd><br >
+    
+    <dd><strong>Banheiro:               </strong> <%= @room.bathroom ? 'Sim' : 'Não' %></dd>
+    <dd><strong>Sacada:                 </strong> <%= @room.balcony ? 'Sim' : 'Não' %></dd>
+    <dd><strong>Ar condicionado:        </strong> <%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
+    <dd><strong>TV:                     </strong> <%= @room.tv ? 'Sim' : 'Não' %></dd>
+    <dd><strong>Guarda-roupa:           </strong> <%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
+    <dd><strong>Cofre:                  </strong> <%= @room.safe ? 'Sim' : 'Não' %></dd>
+    <dd><strong>Acessibilidade:         </strong> <%= @room.accessible ? 'Sim' : 'Não' %></dd><br >
+  </dt>
+</dl>
+
 <% if @reservation.errors.any? %>
   <p>Verifique os erros abaixo:</p>
   <ul>
@@ -29,20 +46,3 @@
     <%= f.submit 'Verificar disponibilidade' %>
   </div>
 <% end %>
-
-<dl>
-  <dt><strong>Detalhes do quarto</strong></dd>
-    <dd><strong>Descrição:              </strong> <%= @room.description %></dd>
-    <dd><strong>Dimensão:               </strong> <%= @room.dimension %> m²</dd>
-    <dd><strong>Ocupação máxima:        </strong> <%= @room.max_occupancy %> pessoas</dd>
-    <dd><strong>Valor da diária:        </strong> <%= number_currency(@room.value) %></dd><br >
-    
-    <dd><strong>Banheiro:               </strong> <%= @room.bathroom ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Sacada:                 </strong> <%= @room.balcony ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Ar condicionado:        </strong> <%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
-    <dd><strong>TV:                     </strong> <%= @room.tv ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Guarda-roupa:           </strong> <%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Cofre:                  </strong> <%= @room.safe ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Acessibilidade:         </strong> <%= @room.accessible ? 'Sim' : 'Não' %></dd><br >
-  </dt>
-</dl>

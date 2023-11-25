@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :rooms, only: [] do
       resources :reservations, only: [:new, :create] do
         post 'validate', on: :collection
+        get 'confirm', on: :collection
       end
     end
   end

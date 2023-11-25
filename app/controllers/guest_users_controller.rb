@@ -6,7 +6,14 @@ class GuestUsersController < ApplicationController
 
   def update
     if current_user.guest_user.update(guest_user_params)
-      redirect_to root_path, notice: 'Boas Vindas! Você realizou seu registro com sucesso.'
+      flash[:notice] = 'Boas Vindas! Você realizou seu registro com sucesso.'
+
+      if session[:reservation].present?
+        room = Room.find(session[:reservation]['room_id'])
+        return redirect_to confirm_inn_room_reservations_path(room.inn, room)
+      end
+
+      redirect_to root_path
     else
       render :edit, status: 422
     end

@@ -1,0 +1,21 @@
+<h1>Resumo da reserva</h1>
+
+<dl>
+  <dt><strong>Pousada:</strong> <%= @reservation.room.inn.name %></dt>
+  <dd>Quarto: <%= @reservation.room.name %></dd>
+  <dd>Check-in: <%= @reservation.check_in.strftime('%d/%m/%Y') %> às <%= @reservation.room.inn.inn_additional.check_in.strftime('%H:%M') %></dd>
+  <dd>Check-out: <%= @reservation.check_out.strftime('%d/%m/%Y') %> às <%= @reservation.room.inn.inn_additional.check_out.strftime('%H:%M') %></dd>
+  <dd>Valor total: <%= number_currency(@reservation_total_value) %></dd><br >
+</dl>
+
+<dl>
+  <dt><strong>Formas de pagamento</strong></dt>
+  <% @reservation.room.inn.inn_additional.payment_methods.each do |payment_method| %>
+    <dd><%= payment_method.name %></dd>
+  <% end %>
+</dl>
+
+<%= form_with(model: @reservation, url: inn_room_reservations_path) do |f| %>
+  <%= f.hidden_field :reservation, value: @reservation %>
+  <%= f.submit 'Confirmar reserva' %>
+<% end %>

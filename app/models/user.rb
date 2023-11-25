@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_one :inn
   has_one :guest_user
+  has_many :reservations
          
   validates_presence_of :name
 

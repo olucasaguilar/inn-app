@@ -1,23 +1,22 @@
 <dl>
-  <dt><strong>Detalhes do quarto:</strong> <%= @room.name %></dd>
-    <dd><strong>Descrição:              </strong> <%= @room.description %></dd>
-    <dd><strong>Dimensão:               </strong> <%= @room.dimension %> m²</dd>
-    <dd><strong>Ocupação máxima:        </strong> <%= @room.max_occupancy %> pessoas</dd>
-    <dd><strong>Valor da diária:        </strong> <%= number_currency(@room.value) %></dd><br >
+  <dt><strong>Detalhes do quarto:</strong> <%= @room.name %></dt>
+  <dd><strong>Descrição:              </strong> <%= @room.description %></dd>
+  <dd><strong>Dimensão:               </strong> <%= @room.dimension %> m²</dd>
+  <dd><strong>Ocupação máxima:        </strong> <%= @room.max_occupancy %> pessoas</dd>
+  <dd><strong>Valor da diária:        </strong> <%= number_currency(@room.value) %></dd><br >
 
-    <dd><strong>Banheiro:               </strong> <%= @room.bathroom ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Sacada:                 </strong> <%= @room.balcony ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Ar condicionado:        </strong> <%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
-    <dd><strong>TV:                     </strong> <%= @room.tv ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Guarda-roupa:           </strong> <%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Cofre:                  </strong> <%= @room.safe ? 'Sim' : 'Não' %></dd>
-    <dd><strong>Acessibilidade:         </strong> <%= @room.accessible ? 'Sim' : 'Não' %></dd><br >
+  <dd><strong>Banheiro:               </strong> <%= @room.bathroom ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Sacada:                 </strong> <%= @room.balcony ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Ar condicionado:        </strong> <%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
+  <dd><strong>TV:                     </strong> <%= @room.tv ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Guarda-roupa:           </strong> <%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Cofre:                  </strong> <%= @room.safe ? 'Sim' : 'Não' %></dd>
+  <dd><strong>Acessibilidade:         </strong> <%= @room.accessible ? 'Sim' : 'Não' %></dd><br >
 
-    <dd><strong>Disponível para reserva:</strong> <%= @room.active? ? 'Sim' : 'Não' %></dd>
-    <dd><%= button_to "#{ @room.active? ? 'Indisponibilizar' : 'Disponibilizar' }", room_status_path(@room), method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd><br >
+  <dd><strong>Disponível para reserva:</strong> <%= @room.active? ? 'Sim' : 'Não' %></dd>
+  <dd><%= button_to "#{ @room.active? ? 'Indisponibilizar' : 'Disponibilizar' }", room_status_path(@room), method: :patch, form: { data: { turbo_confirm: 'Tem certeza?' } } %></dd><br >
 
-    <dd><%= link_to 'Preços por período', price_periods_path(@room) %></dd>
-  </dt>
+  <dd><%= link_to 'Preços por período', price_periods_path(@room) %></dd>
 </dl>
 
 <%= link_to 'Editar', edit_room_path(@room) %><br >
