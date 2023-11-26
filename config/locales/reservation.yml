@@ -1,0 +1,14 @@
+pt-BR:
+  pending: 'Pendente'
+  canceled: 'Cancelado'
+  confirmed: 'Confirmado'
+  activerecord:
+    models:
+      reservation:
+        one: 'Reserva'
+        other: 'Reservas'
+    attributes:
+      reservation:
+        check_in: "Data de entrada"
+        check_out: "Data de saída"
+        guests: "Quantidade de hóspedes"

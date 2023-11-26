@@ -1,0 +1,13 @@
+<h3>Reservas de <%= current_user.name %></h3>
+
+<% @reservations.each do |reservation| %>
+  <dl>
+    <dt><%= link_to reservation.room.name, inn_room_reservation_path(reservation.room.inn, reservation.room, reservation) %></dt>
+    <dd>Reserva: <%= reservation.code %></dd>
+    <dd><%= reservation.guests %> hóspedes</dd>
+  </dl>
+<% end %>
+
+<% if @reservations.empty? %>
+  <p>Você não possui reservas</p>
+<% end %>

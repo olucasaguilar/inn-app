@@ -7,12 +7,14 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     
     resources :rooms, only: [] do
-      resources :reservations, only: [:new, :create] do
+      resources :reservations, only: [:new, :create, :show] do
         post 'validate', on: :collection
         get 'confirm', on: :collection
       end
     end
   end
+
+  resources :reservations, only: [:index]
 
   scope 'inns/search' do
     get 'advanced',            to: 'advanced_searches#search',     as: 'advanced_search_inns'

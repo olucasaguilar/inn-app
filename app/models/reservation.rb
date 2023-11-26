@@ -6,9 +6,23 @@ class Reservation < ApplicationRecord
   validate :dates_must_not_be_reserved
   validate :guests_must_not_exceed_room_capacity
 
+  before_validation :set_innkeeper_as_user, on: :create
+  before_validation :generate_code, on: :create
+
   enum status: { pending: 0, canceled: 10, confirmed: 20 }
 
   private
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(8).upcase
+  end
+
+  def set_innkeeper_as_user
+    unless self.user.present?
+      innkeeper = self.room.inn.user
+      self.user = innkeeper
+    end
+  end
   
   def dates_must_not_be_reserved
     reservations = Reservation.where(room_id: self.room_id).where.not(status: :canceled)

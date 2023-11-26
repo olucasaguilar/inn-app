@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_one :inn
   has_one :guest_user
   has_many :reservations
+
+  delegate :cpf, to: :guest_user
          
   validates_presence_of :name
 

@@ -32,6 +32,7 @@
           <% if current_user.innkeeper? && current_user.inn.present? %>
             | <%= link_to 'Minha Pousada', my_inn_path %>
           <% end %>
+          <%= link_to 'Minhas Reservas', reservations_path %> |
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %>      
         <% end %>
         <hr>

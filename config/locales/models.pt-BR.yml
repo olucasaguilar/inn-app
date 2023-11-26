@@ -22,9 +22,6 @@ pt-BR:
       price_period:
         one: "Preço por Período"
         other: "Preços por Período"
-      reservation:
-        one: "Reserva"
-        other: "Reservas"
       guest_user: "Hóspede"
     attributes:
       inn:
@@ -58,6 +55,7 @@ pt-BR:
       user:
         name: "Nome"
         innkeeper: "Dono de pousada"
+        cpf: "CPF"
       room:
         name: "Nome"
         description: "Descrição"
@@ -79,9 +77,5 @@ pt-BR:
         end_date: "Data de término"
         room: "Quarto"
         room_id: "Quarto"
-      reservation:
-        check_in: "Data de entrada"
-        check_out: "Data de saída"
-        guests: "Quantidade de hóspedes"
       guest_user:
         cpf: "CPF"

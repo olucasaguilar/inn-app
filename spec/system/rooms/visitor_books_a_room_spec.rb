@@ -46,16 +46,12 @@ describe 'Visitor books a room' do
     fill_in 'Data de saída', with: 5.days.from_now.strftime('%d/%m/%Y')
     fill_in 'Quantidade de hóspedes', with: 3
     click_on 'Verificar disponibilidade'    
-    click_on 'Prosseguir'    
-    click_on 'Criar conta'
-    fill_in 'Nome', with: 'Pedro'
-    select 'Não', from: 'Dono de pousada'
-    fill_in 'E-mail', with: 'pedro@gmail.com'
-    fill_in 'Senha', with: '123312'
-    fill_in 'Confirme sua senha', with: '123312'
-    click_on 'Criar Usuário'
-    fill_in 'CPF', with: '12345678910'
-    click_on 'Atualizar Usuário'
+    click_on 'Prosseguir'
+    within 'form#new_user' do
+      fill_in 'E-mail', with: 'gabriel@gmail.com'
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
     # Assert
     expect(current_path).not_to eq root_path
     expect(page).to have_content 'Resumo da reserva'
