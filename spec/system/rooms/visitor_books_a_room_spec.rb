@@ -88,7 +88,7 @@ describe 'Visitor books a room' do
     expect(page).to have_content 'Quarto: Blue Room'
     expect(page).to have_content "Check-in: #{2.days.from_now.strftime('%d/%m/%Y')} às 14:00"
     expect(page).to have_content "Check-out: #{5.days.from_now.strftime('%d/%m/%Y')} às 12:00"
-    expect(page).to have_content 'Valor total: R$ 600,00'
+    expect(page).to have_content 'Valor total: R$ 800,00'
     expect(page).to have_content 'Formas de pagamento'
     expect(page).to have_content 'Cartão de crédito'
     expect(page).to have_content 'Boleto bancário'

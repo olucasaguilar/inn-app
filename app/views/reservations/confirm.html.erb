@@ -5,7 +5,7 @@
   <dd>Quarto: <%= @reservation.room.name %></dd>
   <dd>Check-in: <%= @reservation.check_in.strftime('%d/%m/%Y') %> às <%= @reservation.room.inn.inn_additional.check_in.strftime('%H:%M') %></dd>
   <dd>Check-out: <%= @reservation.check_out.strftime('%d/%m/%Y') %> às <%= @reservation.room.inn.inn_additional.check_out.strftime('%H:%M') %></dd>
-  <dd>Valor total: <%= number_currency(@reservation_total_value) %></dd><br >
+  <dd>Valor total: <%= number_currency(@reservation.total_value) %></dd><br >
 </dl>
 
 <dl>

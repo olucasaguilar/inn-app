@@ -13,7 +13,6 @@ class ReservationsController < ApplicationController
     @reservation.room = @room    
     if @reservation.valid?
       session[:reservation] = @reservation
-      set_reservation_total_value(@reservation)
       render :validate, status: 422
     else
       render :new, status: 422
@@ -22,7 +21,6 @@ class ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(session[:reservation])
-    set_reservation_total_value(@reservation)
   end
 
   def create
@@ -43,15 +41,9 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
-    set_reservation_total_value(@reservation)
   end
 
   private
-
-  def set_reservation_total_value(reservation)
-    total_days = (reservation.check_out - reservation.check_in).to_i
-    @reservation_total_value = total_days * reservation.room.value
-  end
 
   def set_reservation
     params.require(:reservation).permit(:check_in, :check_out, :guests)

@@ -11,6 +11,13 @@ class Reservation < ApplicationRecord
 
   enum status: { pending: 0, canceled: 10, confirmed: 20 }
 
+  def total_value
+    (self.check_in..self.check_out).map do |date|
+      price_period = self.room.price_periods.find { |price_period| price_period.start_date <= date && price_period.end_date >= date }
+      price_period.present? ? price_period.value : self.room.value
+    end.sum
+  end
+
   private
 
   def generate_code

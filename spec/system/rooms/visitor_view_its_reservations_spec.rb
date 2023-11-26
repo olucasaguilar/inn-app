@@ -87,7 +87,7 @@ describe 'Visitor view its reservations' do
     expect(page).to have_content 'Data de entrada: ' + I18n.l(reservation.check_in)
     expect(page).to have_content 'Data de saída: ' + I18n.l(reservation.check_out)
     expect(page).to have_content 'Valor da diária: R$ 200,00'
-    expect(page).to have_content 'Valor total: R$ 600,00'
+    expect(page).to have_content 'Valor total: R$ 800,00'
     expect(page).to have_content 'Quantidade de hóspedes: 2'
     expect(page).to have_content 'CPF do responsável: 12345678900'
     expect(page).to have_content 'Status: Pendente'

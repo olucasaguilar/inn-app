@@ -48,7 +48,7 @@ describe 'Visitor checks availability of room' do
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: innkeeper, status: :active)
     room = Room.create!(name: 'Blue Room', description: 'Quarto com vista para o mar', dimension: 20,
-                 max_occupancy: 2, value: 20000, inn: inn, status: :active)
+                 max_occupancy: 2, value: 15000, inn: inn, status: :active)
     Reservation.create!(check_in: 2.days.from_now, check_out: 5.days.from_now, guests: 2, room: room, 
                         status: :canceled)
     # Act
