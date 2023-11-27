@@ -2,6 +2,8 @@ class Reservation < ApplicationRecord
   belongs_to :room
   belongs_to :user
 
+  has_one :additionals, class_name: 'ReservationAdditional'
+
   validates :check_in, :check_out, :guests, presence: true
   validate :dates_must_not_be_reserved
   validate :start_date_must_be_less_than_end_date
@@ -28,10 +30,15 @@ class Reservation < ApplicationRecord
   def active
     return false if self.check_in > 0.days.from_now.to_date
     self.active!
+    create_additionals
     true
   end
 
   private
+
+  def create_additionals
+    self.create_additionals!(datetime_check_in: DateTime.now)
+  end
 
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase

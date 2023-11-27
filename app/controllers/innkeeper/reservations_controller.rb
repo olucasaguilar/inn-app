@@ -1,6 +1,6 @@
 class Innkeeper::ReservationsController < ApplicationController
   def index
-    @reservations = current_user.inn.rooms.map { |room| room.reservations }.flatten
+    @reservations = current_user.inn.rooms.map { |room| room.reservations.where.not(status: :active) }.flatten
   end
 
   def show
@@ -19,5 +19,9 @@ class Innkeeper::ReservationsController < ApplicationController
     end
 
     redirect_to innkeeper_reservation_path(@reservation)
+  end
+
+  def active_reservations
+    @reservations = current_user.inn.rooms.map { |room| room.reservations.active }.flatten
   end
 end

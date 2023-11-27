@@ -1,13 +1,15 @@
-<h3>Reservas</h3>
-
-<%= link_to 'Estadias Ativas', active_innkeeper_reservations_path %>
+<h3>Estadias Ativas</h3>
 
 <% @reservations.each do |reservation| %>
   <dl>
     <dd><%= link_to "Código da reserva: #{reservation.code}", innkeeper_reservation_path(reservation) %></dd>
     <dd><strong>Quarto:</strong> <%= reservation.room.name %></dd>
-    <dd><strong>Data de entrada:</strong> <%= I18n.l(reservation.check_in) %></dd>
+    <dd><strong>Data e Hora de Entrada:</strong> <%= reservation.additionals.datetime_check_in.strftime('%d/%m/%Y %H:%M') %></dd>
     <dd><strong>Data de saída:</strong> <%= I18n.l(reservation.check_out) %></dd>
     <dd><strong>Hóspedes:</strong> <%= reservation.guests %></dd>
   </dl>
+<% end %>
+
+<% if @reservations.empty? %>
+  <p>Não há estadias ativas no momento.</p>
 <% end %>

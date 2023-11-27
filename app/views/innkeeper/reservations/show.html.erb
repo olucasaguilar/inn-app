@@ -2,7 +2,11 @@
 
 <dl>
   <dd><strong>Quarto:</strong> <%= @reservation.room.name %></dd>
-  <dd><strong>Data de entrada:</strong> <%= I18n.l(@reservation.check_in) %></dd>
+  <% if @reservation.active? %>
+    <dd><strong>Data e Hora de Entrada:</strong> <%= @reservation.additionals.datetime_check_in.strftime('%d/%m/%Y %H:%M') %></dd>
+  <% else %>
+    <dd><strong>Data de entrada:</strong> <%= I18n.l(@reservation.check_in) %></dd>
+  <% end %>
   <dd><strong>Data de saída:</strong> <%= I18n.l(@reservation.check_out) %></dd>
   <dd><strong>Hóspedes:</strong> <%= @reservation.guests %></dd>
   <dd><strong>Valor total:</strong> <%= number_currency(@reservation.total_value) %></dd>

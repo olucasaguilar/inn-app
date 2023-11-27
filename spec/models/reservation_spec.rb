@@ -132,4 +132,60 @@ RSpec.describe Reservation, type: :model do
       expect(total_value).to eq(110000)
     end
   end
+
+  describe '#active' do
+    it 'false when check_in is in the future' do
+      # Arrange
+      innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+      address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
+                            state: 'SP', city: 'São Paulo', zip_code: '05412000')
+      inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
+                        cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
+                        address: address, user: innkeeper, status: :active)
+      room = Room.create!(name: 'Blue Room', description: 'Quarto com vista para o mar', dimension: 20,
+                          max_occupancy: 2, value: 20000, inn: inn, status: :active)
+      reservation = Reservation.create!(check_in: 3.days.from_now, check_out: 5.days.from_now, guests: 2, 
+                                        room: room)
+      # Act
+      result = reservation.active
+      # Assert
+      expect(result).to eq(false)
+    end
+
+    it 'true when check_in is today' do
+      # Arrange
+      innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+      address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
+                            state: 'SP', city: 'São Paulo', zip_code: '05412000')
+      inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
+                        cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
+                        address: address, user: innkeeper, status: :active)
+      room = Room.create!(name: 'Blue Room', description: 'Quarto com vista para o mar', dimension: 20,
+                          max_occupancy: 2, value: 20000, inn: inn, status: :active)
+      reservation = Reservation.create!(check_in: 0.days.from_now, check_out: 5.days.from_now, guests: 2, 
+                                        room: room)
+      # Act
+      result = reservation.active
+      # Assert
+      expect(result).to eq(true)
+    end
+    
+    it 'saves datetime_check_in' do
+      # Arrange
+      innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+      address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
+                            state: 'SP', city: 'São Paulo', zip_code: '05412000')
+      inn = Inn.create!(name: 'Pousada do Alemão', social_name: 'Pousada do Alemão LTDA', 
+                        cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
+                        address: address, user: innkeeper, status: :active)
+      room = Room.create!(name: 'Blue Room', description: 'Quarto com vista para o mar', dimension: 20,
+                          max_occupancy: 2, value: 20000, inn: inn, status: :active)
+      reservation = Reservation.create!(check_in: 0.days.from_now, check_out: 5.days.from_now, guests: 2, 
+                                        room: room)
+      # Act
+      reservation.active
+      # Assert
+      expect(reservation.additionals.datetime_check_in).to be_within(1.second).of(DateTime.now)
+    end
+  end
 end
