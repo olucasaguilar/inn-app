@@ -29,10 +29,12 @@
         <% else %>
           <%= current_user.name %>
           <%= current_user.innkeeper? ? '(Proprietário)' : '(Hóspede)' %>
-          <% if current_user.innkeeper? && current_user.inn.present? %>
+          <% if current_user.innkeeper? %>
             | <%= link_to 'Minha Pousada', my_inn_path %>
+            | <%= link_to 'Reservas', innkeeper_reservations_path %>
+          <% else %>
+            <%= link_to 'Minhas Reservas', reservations_path %> |
           <% end %>
-          <%= link_to 'Minhas Reservas', reservations_path %> |
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %>      
         <% end %>
         <hr>

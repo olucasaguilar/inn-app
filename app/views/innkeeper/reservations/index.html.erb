@@ -1,0 +1,12 @@
+<h3>Reservas</h3>
+
+<% @reservations.each do |reservation| %>
+  <dl>
+    <dt><strong>Pousada:</strong> <%= reservation.room.inn.name %></dt>
+    <dd><strong>Código da reserva:</strong> <%= reservation.code %></dd>
+    <dd><strong>Quarto:</strong> <%= reservation.room.name %></dd>
+    <dd><strong>Data de entrada:</strong> <%= I18n.l(reservation.check_in) %></dd>
+    <dd><strong>Data de saída:</strong> <%= I18n.l(reservation.check_out) %></dd>
+    <dd><strong>Hóspedes:</strong> <%= reservation.guests %></dd>
+  </dl>
+<% end %>
