@@ -2,13 +2,17 @@
 
 <dl>
   <dt><strong><%= Reservation.model_name.human %>:</strong> <%= @reservation.code %></dt>
-  <dd><strong><%= Inn.model_name.human %>:</strong>         <%= @reservation.room.inn.name %></dd>
-  <dd><strong><%= Room.model_name.human %>:</strong>        <%= @reservation.room.name %></dd>
-  <dt><strong><%= Reservation.human_attribute_name(:check_in) %>:</strong>  <%= I18n.localize @reservation.check_in %></dt>
+  <dd><strong><%= Inn.model_name.human %>:</strong> <%= @reservation.room.inn.name %></dd>
+  <dd><strong><%= Room.model_name.human %>:</strong> <%= @reservation.room.name %></dd>
+  <dt><strong><%= Reservation.human_attribute_name(:check_in) %>:</strong> <%= I18n.localize @reservation.check_in %></dt>
   <dd><strong><%= Reservation.human_attribute_name(:check_out) %>:</strong> <%= I18n.localize @reservation.check_out %></dd>
   <dd><strong>Valor da diária:</strong> <%= number_currency @reservation.room.value %></dd>
   <dd><strong>Valor total:</strong>     <%= number_currency @reservation.total_value %></dd>
-  <dd><strong><%= Reservation.human_attribute_name(:guests) %>:</strong>      <%= @reservation.guests %></dd>
+  <dd><strong><%= Reservation.human_attribute_name(:guests) %>:</strong> <%= @reservation.guests %></dd>
   <dd><strong><%= User.human_attribute_name(:cpf) %> do responsável:</strong> <%= @reservation.user.cpf %></dd>
-  <dd><strong><%= Reservation.human_attribute_name(:status) %>:</strong>      <%= I18n.t(@reservation.status) %></dd>
+  <dd><strong><%= Reservation.human_attribute_name(:status) %>:</strong> <%= I18n.t(@reservation.status) %></dd>
 </dl>
+
+<% if @reservation.pending? %>
+  <%= button_to 'CANCELAR', canceled_inn_room_reservation_path(@reservation.room.inn, @reservation.room, @reservation), method: :post %>
+<% end %>

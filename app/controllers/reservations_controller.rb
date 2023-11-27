@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!,    except: [:new, :validate]
-  before_action :block_guests,          except: [:new, :validate, :create, :confirm, :index, :show]
+  before_action :block_guests,          except: [:new, :validate, :create, :confirm, :index, :show, :canceled]
 
   def new
     @room = Room.find(params[:room_id])
@@ -41,6 +41,20 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+  end
+
+  def canceled
+    @reservation = Reservation.find(params[:id])
+    
+    return redirect_to root_path unless @reservation.user == current_user
+
+    if @reservation.cancel
+      flash[:alert] = 'Reserva cancelada com sucesso'
+    else
+      flash[:alert] = 'Não é possível cancelar uma reserva com menos de 7 dias antes do check-in'
+    end
+    
+    redirect_to inn_room_reservation_path(@reservation.room.inn, @reservation.room, @reservation)
   end
 
   private

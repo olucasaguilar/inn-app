@@ -18,6 +18,12 @@ class Reservation < ApplicationRecord
     end.sum
   end
 
+  def cancel
+    return false if self.check_in < 7.days.from_now
+    self.canceled!
+    true
+  end
+
   private
 
   def generate_code

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
   describe 'generate random code' do
-    it 'when create order' do
+    it 'when create reservation' do
       # Arrange
       innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
       address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
@@ -43,7 +43,7 @@ RSpec.describe Reservation, type: :model do
       expect(second_reservation.code).not_to eq(first_reservation.code)
     end
     
-    it 'and code does not change when update order' do
+    it 'and code does not change when update reservation' do
       # Arrange
       innkeeper = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
       address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 

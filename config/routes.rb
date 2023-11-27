@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :reservations, only: [:new, :create, :show] do
         post 'validate', on: :collection
         get 'confirm', on: :collection
+        post 'canceled', on: :member
       end
     end
   end
