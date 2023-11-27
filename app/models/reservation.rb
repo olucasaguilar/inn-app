@@ -4,12 +4,13 @@ class Reservation < ApplicationRecord
 
   validates :check_in, :check_out, :guests, presence: true
   validate :dates_must_not_be_reserved
+  validate :start_date_must_be_less_than_end_date
   validate :guests_must_not_exceed_room_capacity
 
   before_validation :set_innkeeper_as_user, on: :create
   before_validation :generate_code, on: :create
 
-  enum status: { pending: 0, canceled: 10, confirmed: 20 }
+  enum status: { pending: 0, canceled: 10, active: 20 }
 
   def total_value
     (self.check_in..self.check_out).map do |date|
@@ -24,6 +25,12 @@ class Reservation < ApplicationRecord
     true
   end
 
+  def active
+    return false if self.check_in > 0.days.from_now.to_date
+    self.active!
+    true
+  end
+
   private
 
   def generate_code
@@ -31,10 +38,11 @@ class Reservation < ApplicationRecord
   end
 
   def set_innkeeper_as_user
-    unless self.user.present?
-      innkeeper = self.room.inn.user
-      self.user = innkeeper
-    end
+    return if self.room.nil?
+    return if self.user.present?
+    
+    innkeeper = self.room.inn.user
+    self.user = innkeeper
   end
   
   def dates_must_not_be_reserved
@@ -56,5 +64,13 @@ class Reservation < ApplicationRecord
   def guests_must_not_exceed_room_capacity
     return if self.guests.nil? || self.room.nil?
     errors.add(:base, 'O quarto não comporta a quantidade de hóspedes informada') if self.guests > self.room.max_occupancy
+  end
+
+  def start_date_must_be_less_than_end_date
+    unless self.check_in.nil? || self.check_out.nil?
+      if self.check_in > self.check_out
+        errors.add(:check_in, "deve ser menor que a data final")
+      end
+    end
   end
 end

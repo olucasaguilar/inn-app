@@ -1,7 +1,7 @@
 pt-BR:
   pending: 'Pendente'
   canceled: 'Cancelado'
-  confirmed: 'Confirmado'
+  active: 'Ativa'
   activerecord:
     models:
       reservation:

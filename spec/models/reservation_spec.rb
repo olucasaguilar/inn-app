@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
+  describe '#valid?' do
+    it 'false when check_out precedes check_in' do
+      # Arrange
+      reservation = Reservation.new(check_in: 6.days.from_now, check_out: 4.days.from_now)
+      # Act
+      reservation.valid?
+      # Assert
+      expect(reservation.errors.full_messages).to include('Data de entrada deve ser menor que a data final')
+    end
+  end
+
   describe 'generate random code' do
     it 'when create reservation' do
       # Arrange

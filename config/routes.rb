@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index]
 
   namespace :innkeeper do
-    resources :reservations, only: [:index]
+    resources :reservations, only: [:index, :show] do
+      post 'active', on: :member
+    end
   end
 
   scope 'inns/search' do
