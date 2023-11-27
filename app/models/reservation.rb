@@ -34,6 +34,13 @@ class Reservation < ApplicationRecord
     true
   end
 
+  def cancel_innkeeper
+    return false if self.active?
+    return false if self.check_in >= 2.days.ago
+    self.canceled!
+    true
+  end
+
   private
 
   def create_additionals

@@ -1,6 +1,6 @@
 class Innkeeper::ReservationsController < ApplicationController
   def index
-    @reservations = current_user.inn.rooms.map { |room| room.reservations.where.not(status: :active) }.flatten
+    @reservations = current_user.inn.rooms.map { |room| room.reservations.pending }.flatten
   end
 
   def show
@@ -19,6 +19,21 @@ class Innkeeper::ReservationsController < ApplicationController
     end
 
     redirect_to innkeeper_reservation_path(@reservation)
+  end
+
+  def canceled
+    @reservation = Reservation.find(params[:id])
+    
+    return redirect_to root_path unless @reservation.room.inn == current_user.inn
+
+    if @reservation.cancel_innkeeper
+      flash[:alert] = 'Reserva cancelada com sucesso!'
+    else
+      flash[:alert] = 'Reserva só pode ser cancelada após 2 dias do check-in'
+      return redirect_to innkeeper_reservation_path(@reservation)
+    end
+    
+    redirect_to innkeeper_reservations_path
   end
 
   def active_reservations

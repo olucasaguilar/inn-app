@@ -17,4 +17,5 @@
 
 <% if @reservation.pending? %>
   <%= button_to 'Realizar CHECK-IN', active_innkeeper_reservation_path(@reservation), method: :post %>
+  <%= button_to 'Cancelar reserva', canceled_innkeeper_reservation_path(@reservation), method: :post %>
 <% end %>
