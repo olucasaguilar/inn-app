@@ -11,15 +11,9 @@ class Reservation < ApplicationRecord
 
   before_validation :set_innkeeper_as_user, on: :create
   before_validation :generate_code, on: :create
+  before_validation :set_total_value, on: :create
 
   enum status: { pending: 0, canceled: 10, active: 20 }
-
-  def total_value
-    (self.check_in..self.check_out).map do |date|
-      price_period = self.room.price_periods.find { |price_period| price_period.start_date <= date && price_period.end_date >= date }
-      price_period.present? ? price_period.value : self.room.value
-    end.sum
-  end
 
   def cancel
     return false if self.check_in < 7.days.from_now
@@ -42,6 +36,18 @@ class Reservation < ApplicationRecord
   end
 
   private
+
+  def calculate_total_value
+    (self.check_in..self.check_out).map do |date|
+      price_period = self.room.price_periods.find { |price_period| price_period.start_date <= date && price_period.end_date >= date }
+      price_period.present? ? price_period.value : self.room.value
+    end.sum
+  end
+
+  def set_total_value
+    return if self.check_in.nil? || self.check_out.nil?
+    self.total_value = calculate_total_value
+  end
 
   def create_additionals
     self.create_additionals!(datetime_check_in: DateTime.now)
