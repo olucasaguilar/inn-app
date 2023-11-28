@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_28_044318) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_28_182314) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
@@ -100,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_044318) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.integer "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -144,5 +153,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_044318) do
   add_foreign_key "reservation_additionals", "reservations"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "reservations"
   add_foreign_key "rooms", "inns"
 end

@@ -16,3 +16,18 @@
 <% if @reservation.pending? %>
   <%= button_to 'CANCELAR', canceled_inn_room_reservation_path(@reservation.room.inn, @reservation.room, @reservation), method: :post %>
 <% end %>
+
+<% if @reservation.finished? %> 
+  <% if @reservation.review.nil? %>
+    <%= link_to 'Avaliar Estadia', new_inn_room_reservation_review_path(@reservation.room.inn, @reservation.room, @reservation) %>
+
+  <% else %>
+    <h3>Avaliação</h3>
+    
+    <dl>
+      <dt><strong><%= Review.human_attribute_name(:rating) %>:</strong> <%= @reservation.review.rating %></dt>
+      <dd><strong><%= Review.human_attribute_name(:comment) %>:</strong> <%= @reservation.review.comment %></dd>
+    </dl>
+
+  <% end %>
+<% end %>

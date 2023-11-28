@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
 
   has_one :additionals, class_name: 'ReservationAdditional'
+  has_one :review
 
   validates :check_in, :check_out, :guests, presence: true
   validate :dates_must_not_be_reserved

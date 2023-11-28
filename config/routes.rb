@@ -11,6 +11,8 @@ Rails.application.routes.draw do
         post 'validate', on: :collection
         get 'confirm', on: :collection
         post 'canceled', on: :member
+        
+        resources :reviews, only: [:new, :create]
       end
     end
   end
