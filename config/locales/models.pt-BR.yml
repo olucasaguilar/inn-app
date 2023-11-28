@@ -85,3 +85,5 @@ pt-BR:
       review:
         rating: "Nota"
         comment: "Comentário"
+        reservation: "Reserva"
+        answer: "Resposta"

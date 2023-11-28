@@ -1,0 +1,20 @@
+
+<h1>Avaliação de <%= @review.reservation.user.name %></h1>
+
+<dl>
+  <dt>Comentário:</dt>
+  <dd><%= @review.comment %></dd>
+  <dt>Nota:</dt>
+  <dd><%= @review.rating %></dd>
+</dl>
+
+<%= form_with(model: @review, url: innkeeper_review_path) do |f| %>
+  <div>
+    <%= f.label :answer %>
+    <%= f.text_area :answer %>
+  </div>
+
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

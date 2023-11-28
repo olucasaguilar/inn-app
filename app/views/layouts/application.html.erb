@@ -26,16 +26,22 @@
 
         <% unless user_signed_in? %>
           <%= link_to 'Entrar', new_user_session_path %> |
+
         <% else %>
           <%= current_user.name %>
           <%= current_user.innkeeper? ? '(Proprietário)' : '(Hóspede)' %>
+
           <% if current_user.innkeeper? %>
             | <%= link_to 'Minha Pousada', my_inn_path %>
             | <%= link_to 'Reservas', innkeeper_reservations_path %>
+            | <%= link_to 'Avaliações', innkeeper_reviews_path %>
+
           <% else %>
             <%= link_to 'Minhas Reservas', reservations_path %> |
-          <% end %>
-          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>      
+
+          <% end %>   
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>  
+
         <% end %>
         <hr>
       </nav>

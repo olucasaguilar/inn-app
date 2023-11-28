@@ -16,6 +16,18 @@ class Inn < ApplicationRecord
 
   validate :user_is_innkeeper
 
+  def reviews
+    reviews = []
+    
+    rooms.each do |room|
+      room.reservations.each do |reservation|
+        reviews << reservation.review unless reservation.review.nil?
+      end
+    end
+
+    reviews
+  end
+
   private
 
   def create_inn_additional

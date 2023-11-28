@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index]
 
   namespace :innkeeper do
+    resources :reviews, only: [:index, :edit, :update]
+    
     resources :reservations, only: [:index, :show] do
       post 'active', on: :member
       get 'active', on: :collection, to: 'reservations#active_reservations'
