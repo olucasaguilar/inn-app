@@ -2,14 +2,23 @@
 
 <dl>
   <dd><strong>Quarto:</strong> <%= @reservation.room.name %></dd>
-  <% if @reservation.active? %>
+  
+  <% if @reservation.active? || @reservation.finished? %>
     <dd><strong>Data e Hora de Entrada:</strong> <%= @reservation.additionals.datetime_check_in.strftime('%d/%m/%Y %H:%M') %></dd>
   <% else %>
     <dd><strong>Data de entrada:</strong> <%= I18n.l(@reservation.check_in) %></dd>
   <% end %>
-  <dd><strong>Data de saída:</strong> <%= I18n.l(@reservation.check_out) %></dd>
+
+  <% if @reservation.finished? %>
+    <dd><strong>Data e Hora de Saída:</strong> <%= @reservation.additionals.datetime_check_out.strftime('%d/%m/%Y %H:%M') %></dd>
+    <dd><strong>Valor Final:</strong> <%= number_currency(@reservation.total_value) %></dd>
+    <dd><strong>Meio de pagamento:</strong> <%= @reservation.additionals.payment_method.name %></dd>
+  <% else %>
+    <dd><strong>Data de saída:</strong> <%= I18n.l(@reservation.check_out) %></dd>
+    <dd><strong>Valor total:</strong> <%= number_currency(@reservation.total_value) %></dd>
+  <% end %>  
+  
   <dd><strong>Hóspedes:</strong> <%= @reservation.guests %></dd>
-  <dd><strong>Valor total:</strong> <%= number_currency(@reservation.total_value) %></dd>
   <dd><strong>Status:</strong> <%= I18n.t(@reservation.status) %></dd>
   <dd><strong>Nome do hóspede:</strong> <%= @reservation.user.name %></dd>
   <dd><strong>E-mail do hóspede:</strong> <%= @reservation.user.email %></dd>
@@ -18,4 +27,8 @@
 <% if @reservation.pending? %>
   <%= button_to 'Realizar CHECK-IN', active_innkeeper_reservation_path(@reservation), method: :post %>
   <%= button_to 'Cancelar reserva', canceled_innkeeper_reservation_path(@reservation), method: :post %>
+<% end %>
+
+<% if @reservation.active? %>
+  <%= link_to 'Realizar CHECK-OUT', check_out_innkeeper_reservation_path(@reservation) %>
 <% end %>

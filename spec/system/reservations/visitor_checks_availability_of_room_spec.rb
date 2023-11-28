@@ -48,7 +48,8 @@ describe 'Visitor checks availability of room' do
                       cnpj: '12345678901234', phone: '11999999999', email: 'pdalemao@gmail.com', 
                       address: address, user: innkeeper, status: :active)
     room = Room.create!(name: 'Blue Room', description: 'Quarto com vista para o mar', dimension: 20,
-                 max_occupancy: 2, value: 15000, inn: inn, status: :active)
+                 max_occupancy: 2, value: 150_00, inn: inn, status: :active)
+    PricePeriod.create!(start_date: 2.days.from_now, end_date: 5.days.from_now, value: 100_00, room: room)
     Reservation.create!(check_in: 2.days.from_now, check_out: 5.days.from_now, guests: 2, room: room, 
                         status: :canceled)
     # Act
@@ -62,7 +63,7 @@ describe 'Visitor checks availability of room' do
     # # Assert
     expect(page).to have_content 'Verificar a disponibilidade do quarto: Blue Room'
     expect(page).to have_content 'Quarto disponível para reserva'
-    expect(page).to have_content 'Valor total das diárias: R$ 600,00'
+    expect(page).to have_content 'Valor total das diárias: R$ 400,00'
     expect(page).to have_link 'Prosseguir'
   end
 

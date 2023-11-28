@@ -39,4 +39,19 @@ class Innkeeper::ReservationsController < ApplicationController
   def active_reservations
     @reservations = current_user.inn.rooms.map { |room| room.reservations.active }.flatten
   end
+
+  def check_out
+    @reservation = Reservation.find(params[:id])
+    @payment_methods = current_user.inn.additionals.payment_methods
+  end
+
+  def finished
+    @reservation = Reservation.find(params[:id])
+    payment_method = PaymentMethod.find(params[:reservation][:payment_method_id])
+    @reservation.additionals.update!(payment_method: payment_method)
+    @reservation.finished
+
+    flash[:alert] = 'Check-out realizado com sucesso!'
+    redirect_to innkeeper_reservation_path(@reservation)
+  end
 end

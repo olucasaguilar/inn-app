@@ -1,0 +1,12 @@
+<h3>Confirmar CHECK-OUT da reserva: <%= @reservation.code %></h3>
+
+<%= form_with(model: @reservation, url: finished_innkeeper_reservation_path) do |f| %>
+  <div>
+    <%= f.label :payment_method_id, 'Meio de pagamento' %>
+    <%= f.collection_select :payment_method_id, @payment_methods, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.submit 'Finalizar CHECK-OUT' %>
+  </div>
+<% end %>

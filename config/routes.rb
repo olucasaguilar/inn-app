@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       post 'active', on: :member
       get 'active', on: :collection, to: 'reservations#active_reservations'
       post 'canceled', on: :member
+      get 'check_out', on: :member
+      patch 'finished', on: :member
     end
   end
 

@@ -4,6 +4,7 @@ class Inn < ApplicationRecord
   belongs_to :address
   belongs_to :user
   has_one :inn_additional
+  has_one :additionals, class_name: 'InnAdditional'
   has_many :rooms
 
   validates :name, :social_name, :cnpj, :phone, :email, presence: true

@@ -13,7 +13,7 @@ class Reservation < ApplicationRecord
   before_validation :generate_code, on: :create
   before_validation :set_total_value, on: :create
 
-  enum status: { pending: 0, canceled: 10, active: 20 }
+  enum status: { pending: 0, canceled: 10, active: 20, finished: 30 }
 
   def cancel
     return false if self.check_in < 7.days.from_now
@@ -35,22 +35,59 @@ class Reservation < ApplicationRecord
     true
   end
 
+  def finished
+    return false unless self.active?    
+    self.finished!
+    set_datetime_check_out
+    check_in = self.check_in
+    check_out = self.additionals.datetime_check_out.to_date
+    self.update!(total_value: calculate_total_value(check_in, check_out))
+    true
+  end
+
   private
 
-  def calculate_total_value
-    (self.check_in..self.check_out).map do |date|
-      price_period = self.room.price_periods.find { |price_period| price_period.start_date <= date && price_period.end_date >= date }
-      price_period.present? ? price_period.value : self.room.value
-    end.sum
+  def calculate_total_value(check_in, check_out)
+    total_value = 0
+  
+    (check_in..check_out).each do |date|
+      price_period = find_price_period(date)
+  
+      if price_period
+        total_value += calculate_price_for_date(date, check_out, price_period)
+      else
+        total_value += self.room.value
+      end
+    end
+  
+    total_value
+  end  
+
+  def find_price_period(date)
+    self.room.price_periods.find do |price_period|
+      price_period.start_date <= date && price_period.end_date >= date
+    end
   end
+  
+  def calculate_price_for_date(date, check_out, price_period)
+    if date == check_out && self.id.present? && Time.now.hour > self.room.inn.additionals.check_out.hour
+      self.room.value
+    else
+      price_period.value
+    end
+  end  
 
   def set_total_value
     return if self.check_in.nil? || self.check_out.nil?
-    self.total_value = calculate_total_value
+    self.total_value = calculate_total_value(self.check_in, self.check_out)
   end
 
   def create_additionals
     self.create_additionals!(datetime_check_in: DateTime.now)
+  end
+
+  def set_datetime_check_out
+    self.additionals.update!(datetime_check_out: DateTime.now)
   end
 
   def generate_code
