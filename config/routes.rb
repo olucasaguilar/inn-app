@@ -53,4 +53,10 @@ Rails.application.routes.draw do
   scope :users do
     resources :guest_users, only: [:edit, :update]
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :inns, only: [:index]
+    end
+  end
 end
