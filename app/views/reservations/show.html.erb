@@ -29,5 +29,12 @@
       <dd><strong><%= Review.human_attribute_name(:comment) %>:</strong> <%= @reservation.review.comment %></dd>
     </dl>
 
+    <% if @reservation.review.answer.present? %>
+      <dl>
+        <dt><strong>Resposta:</strong></dt>
+        <dd><%= @reservation.review.answer %></dd>
+      </dl>
+    <% end %>    
+
   <% end %>
 <% end %>
