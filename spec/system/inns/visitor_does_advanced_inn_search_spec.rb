@@ -79,6 +79,7 @@ describe 'Visitor does advanced inn search' do
     expect(page).to have_content '1 pousada encontrada'
     expect(page).to have_link 'Pousada do Russo'
     expect(page).not_to have_link 'Pousada do Alemão'
+    expect(page).to have_content 'Nota Média: Sem avaliações'
   end
 
   it 'and finds multiple results' do

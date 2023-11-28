@@ -28,6 +28,16 @@ class Inn < ApplicationRecord
     reviews
   end
 
+  def average_rating
+    average_rating = 0
+
+    reviews.each do |review|
+      average_rating += review.rating
+    end
+
+    reviews.count > 0 ? average_rating / reviews.count : nil
+  end
+
   private
 
   def create_inn_additional

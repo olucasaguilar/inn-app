@@ -44,6 +44,7 @@ describe 'Visitor search inn' do
     expect(page).to have_link 'Pousada do Alemão'
     expect(page).to have_link 'Pousada do Russo'
     expect(page).not_to have_link 'Hotel Primavera'
+    expect(page).to have_content 'Nota Média: Sem avaliações'
   end
 
   it 'and find just one result' do

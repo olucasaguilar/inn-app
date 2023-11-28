@@ -52,6 +52,7 @@ describe 'Visitor view inns by city' do
     expect(page).to have_content 'Pousadas em São Paulo'
     expect(page).to have_link 'Pousada Top'
     expect(page).to have_link 'Pousada do Alemão'
+    expect(page).to have_content 'Nota Média: Sem avaliações'
   end
 
   it 'and view details' do

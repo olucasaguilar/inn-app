@@ -34,7 +34,6 @@ RSpec.describe Review, type: :model do
       reservation = Reservation.create!(check_in: 6.days.from_now, check_out: 9.days.from_now, guests: 2, 
                                         room: room, user: guest)
       review = Review.new(rating: 5, comment: 'Ótima pousada', reservation: reservation)
-      # Act
       review.valid?
       # Assert
       expect(review.errors.full_messages).to include('Reserva não está finalizada')

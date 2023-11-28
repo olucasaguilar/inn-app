@@ -14,6 +14,8 @@
       <dd><%= link_to inn.name, inn %></dd>
       <dt><strong>Cidade:</strong></dd>
       <dd><%= inn.address.city %></dd>
+      <dt><strong>Nota Média:</strong></dd>
+      <dd><%= inn.average_rating ? inn.average_rating : "Sem avaliações" %></dd>
     <dl>
   <% end %>
 </div>
@@ -27,6 +29,8 @@
       <dd><%= link_to inn.name, inn %></dd>
       <dt><strong>Cidade:</strong></dd>
       <dd><%= inn.address.city %></dd>
+      <dt><strong>Nota Média:</strong></dd>
+      <dd><%= inn.average_rating ? inn.average_rating : "Sem avaliações" %></dd>
     <dl>
   <% end %>
 </div>
