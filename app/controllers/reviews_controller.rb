@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :block_guests, except: [:new, :create]
+  before_action :block_guests,        except: [:new, :create, :index]
+  before_action :authenticate_user!,  except: [:index]
 
   def new
     @review = Review.new
@@ -19,6 +20,11 @@ class ReviewsController < ApplicationController
     else
       render :new, status: 422
     end
+  end
+
+  def index
+    @inn = Inn.find(params[:inn_id])
+    @reviews = @inn.reviews
   end
 
   private

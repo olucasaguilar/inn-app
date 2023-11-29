@@ -1,0 +1,25 @@
+<h1>Todas as Avaliações de: <%= @inn.name %></h1>
+
+<% @reviews.each do |review| %>
+  <div id="review-<%= review.id %>">
+    <dl>
+      <dt>Hóspede:</dt>
+      <dd><%= review.reservation.user.name %></dd>
+      <dt>Reserva:</dt>
+      <dd><%= review.reservation.check_in.strftime('%d/%m/%Y') %> - <%= review.reservation.additionals.datetime_check_out.strftime('%d/%m/%Y') %></dd>
+      <dt>Comentário:</dt>
+      <dd><%= review.comment %></dd>
+      <dt>Nota:</dt>
+      <dd><%= review.rating %></dd>
+    </dl>
+
+    <% if review.answer.present? %>
+      <dl>
+        <dt>Resposta:</dt>
+        <dd><%= review.answer %></dd>
+      </dl>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', inn_path(@inn) %>

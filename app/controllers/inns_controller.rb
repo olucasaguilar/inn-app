@@ -13,6 +13,7 @@ class InnsController < ApplicationController
   def show
     @inn = Inn.find(params[:id])
     return redirect_to root_path if @inn.inactive?
+    @reviews = @inn.reviews.last(3)
   end
 
   def create
