@@ -9,7 +9,7 @@
 <div id="recent-inns">
   <h2>Recentes</h2>
   <% @recent_inns.each do |inn| %>
-    <dl>
+    <dl class="card">
       <dt><strong>Nome:</strong></dd>
       <dd><%= link_to inn.name, inn %></dd>
       <dt><strong>Cidade:</strong></dd>
