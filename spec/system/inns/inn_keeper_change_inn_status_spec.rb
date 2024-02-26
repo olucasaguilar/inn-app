@@ -25,7 +25,7 @@ describe 'Inn keeper change inn status' do
 
   it 'to inactive' do
     # Arrange
-    user = User.create!(name: 'Lucas', email: 'lucas@gmail.com', password: '123456', innkeeper: true)
+    user = create(:user, innkeeper: true)
     login_as(user)
     address = Address.new(street: 'Rua dos Bobos, 115', neighborhood: 'Vila Madalena', 
                           state: 'SP', city: 'São Paulo', zip_code: '05412000')
