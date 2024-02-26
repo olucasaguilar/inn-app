@@ -36,3 +36,6 @@
 
 # Ignore drafts
 /draft/
+
+# Ignore coverage files
+coverage/
