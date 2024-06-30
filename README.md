@@ -1,4 +1,6 @@
-# README
+# Inn-App
+
+Aplicação desenvolvida durante a turma 11 do TreinaDev (2023)
 
 # Documentação da API de Pousadas (Inns)
 
